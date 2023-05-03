@@ -22,6 +22,7 @@
 		ED2D5A922A0280760086D777 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A912A0280760086D777 /* RootController.swift */; };
 		ED2D5A942A0284360086D777 /* www in Resources */ = {isa = PBXBuildFile; fileRef = ED2D5A932A0284360086D777 /* www */; };
 		ED2D5A962A0289650086D777 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A952A0289650086D777 /* ContentViewController.swift */; };
+		ED2D5AB02A0296950086D777 /* www-dist in Resources */ = {isa = PBXBuildFile; fileRef = ED2D5AAF2A0296950086D777 /* www-dist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		ED2D5A912A0280760086D777 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		ED2D5A932A0284360086D777 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		ED2D5A952A0289650086D777 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		ED2D5AAF2A0296950086D777 /* www-dist */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "www-dist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				ED2D5A672A0279920086D777 /* native_inertia_boilerplateApp.swift */,
 				ED2D5A692A0279920086D777 /* ContentView.swift */,
 				ED2D5A952A0289650086D777 /* ContentViewController.swift */,
+				ED2D5AAF2A0296950086D777 /* www-dist */,
 				ED2D5A6B2A0279940086D777 /* Assets.xcassets */,
 				ED2D5A882A027E5C0086D777 /* Inertia */,
 				ED2D5A7F2A027BB70086D777 /* AppRouter.swift */,
@@ -173,6 +176,7 @@
 			files = (
 				ED2D5A942A0284360086D777 /* www in Resources */,
 				ED2D5A6F2A0279940086D777 /* Preview Assets.xcassets in Resources */,
+				ED2D5AB02A0296950086D777 /* www-dist in Resources */,
 				ED2D5A6C2A0279940086D777 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

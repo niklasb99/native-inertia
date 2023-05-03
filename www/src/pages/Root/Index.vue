@@ -11,7 +11,7 @@ let props = defineProps<{
   </header>
 
   <main>
-    <h1>Loaded at: {{ props.time }}</h1>
+    <h1>Loaded: {{ props.time }}</h1>
     <Link v-for="i in 50" :key="i" :href="`/${i}`">{{ i }}</Link>
   </main>
 </template>

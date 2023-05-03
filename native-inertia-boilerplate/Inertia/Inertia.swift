@@ -35,7 +35,7 @@ class Inertia {
         Bool(useLocalFileString)
     {
       print("prod")
-      let path = Bundle.main.url(forResource: "www", withExtension: nil, subdirectory: nil)
+      let path = Bundle.main.url(forResource: "www-dist", withExtension: nil, subdirectory: nil)
       guard let baseURL = path else {
         print("Failed to find the base URL for the web content.")
         return WKWebView()
