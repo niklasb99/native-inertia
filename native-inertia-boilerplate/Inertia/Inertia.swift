@@ -9,16 +9,22 @@ import Foundation
 import SwiftyJSON
 import WebKit
 
-public typealias InertiaResponse = (component: String, props: [String: Any], url: String)
-
 class Inertia {
   /// Initializer that set webView
   init() {
   }
 
-  static func render(component: String, props: [String: Any], url: String) -> InertiaResponse {
-
-    return (component, props, url)
+  static func render(component: String, props: [String: Any], url: String) -> String {
+    print("Props", props)
+    let response = JSON([
+      "component": component,
+      "props": props,
+      "url": url,
+    ])
+    print("Response", response)
+    return """
+      window.dispatchEvent(new CustomEvent('native-inertia', { detail: \(response.rawString()!) }));
+      """
   }
 
   static func setup(webView: WKWebView, router: InertiaRouter) -> WKWebView {

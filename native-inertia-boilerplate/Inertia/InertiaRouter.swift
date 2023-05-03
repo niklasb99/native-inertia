@@ -33,19 +33,8 @@ public class InertiaRouter: NSObject, WKScriptMessageHandler {
     self.webView = webView
   }
 
-  public func serve(component: String, props: [String: Any], url: String) {
-    let response = JSON([
-      "component": component,
-      "props": props,
-      "url": url,
-    ])
-    print("Response", response)
-
-    self.webView.evaluateJavaScript(
-      """
-      window.dispatchEvent(new CustomEvent('native-inertia', { detail: \(response()!) }));
-      """
-    )
+  public func serve(response: String) {
+    self.webView.evaluateJavaScript(response)
   }
 
   /**
