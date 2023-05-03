@@ -14,6 +14,7 @@
 		ED2D5A712A0279940086D777 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A702A0279940086D777 /* Persistence.swift */; };
 		ED2D5A742A0279940086D777 /* native_inertia_boilerplate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A722A0279940086D777 /* native_inertia_boilerplate.xcdatamodeld */; };
 		ED2D5A7C2A027A480086D777 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = ED2D5A7B2A027A480086D777 /* SwiftyJSON */; };
+		ED2D5A7E2A027AFD0086D777 /* Inertia in Resources */ = {isa = PBXBuildFile; fileRef = ED2D5A7D2A027AFD0086D777 /* Inertia */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		ED2D5A6E2A0279940086D777 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ED2D5A702A0279940086D777 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		ED2D5A732A0279940086D777 /* native_inertia_boilerplate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = native_inertia_boilerplate.xcdatamodel; sourceTree = "<group>"; };
+		ED2D5A7D2A027AFD0086D777 /* Inertia */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Inertia; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				ED2D5A672A0279920086D777 /* native_inertia_boilerplateApp.swift */,
 				ED2D5A692A0279920086D777 /* ContentView.swift */,
 				ED2D5A6B2A0279940086D777 /* Assets.xcassets */,
+				ED2D5A7D2A027AFD0086D777 /* Inertia */,
 				ED2D5A702A0279940086D777 /* Persistence.swift */,
 				ED2D5A722A0279940086D777 /* native_inertia_boilerplate.xcdatamodeld */,
 				ED2D5A6D2A0279940086D777 /* Preview Content */,
@@ -139,6 +142,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED2D5A7E2A027AFD0086D777 /* Inertia in Resources */,
 				ED2D5A6F2A0279940086D777 /* Preview Assets.xcassets in Resources */,
 				ED2D5A6C2A0279940086D777 /* Assets.xcassets in Resources */,
 			);
