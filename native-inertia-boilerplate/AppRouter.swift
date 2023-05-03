@@ -14,12 +14,12 @@ class AppRouter: InertiaRouter {
 
   // index
   self.get("/") { (req) -> String in
-      IndexController.index()
+      RootController.index()
   }
       
       
   // index
   self.get("/:id") { (req) -> String in
-      IndexController.show(id: req.param("id")!)}
+      RootController.show(id: req.param("id")!)}
   }
 }

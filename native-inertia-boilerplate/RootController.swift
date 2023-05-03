@@ -7,7 +7,7 @@
 
 import Foundation
 
-class IndexController {
+class RootController {
     static func index() -> String {
         return Inertia.render(
             component: "Index",

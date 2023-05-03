@@ -19,7 +19,8 @@
 		ED2D5A8E2A027E5C0086D777 /* InertiaRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A8A2A027E5C0086D777 /* InertiaRouter.swift */; };
 		ED2D5A8F2A027E5C0086D777 /* InertiaRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A8B2A027E5C0086D777 /* InertiaRequest.swift */; };
 		ED2D5A902A027E5C0086D777 /* Inertia.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A8C2A027E5C0086D777 /* Inertia.swift */; };
-		ED2D5A922A0280760086D777 /* IndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A912A0280760086D777 /* IndexController.swift */; };
+		ED2D5A922A0280760086D777 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A912A0280760086D777 /* RootController.swift */; };
+		ED2D5A942A0284360086D777 /* www in Resources */ = {isa = PBXBuildFile; fileRef = ED2D5A932A0284360086D777 /* www */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +36,8 @@
 		ED2D5A8A2A027E5C0086D777 /* InertiaRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InertiaRouter.swift; sourceTree = "<group>"; };
 		ED2D5A8B2A027E5C0086D777 /* InertiaRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InertiaRequest.swift; sourceTree = "<group>"; };
 		ED2D5A8C2A027E5C0086D777 /* Inertia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inertia.swift; sourceTree = "<group>"; };
-		ED2D5A912A0280760086D777 /* IndexController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexController.swift; sourceTree = "<group>"; };
+		ED2D5A912A0280760086D777 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
+		ED2D5A932A0284360086D777 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		ED2D5A5B2A0279920086D777 = {
 			isa = PBXGroup;
 			children = (
+				ED2D5A932A0284360086D777 /* www */,
 				ED2D5A662A0279920086D777 /* native-inertia-boilerplate */,
 				ED2D5A652A0279920086D777 /* Products */,
 			);
@@ -74,7 +77,7 @@
 				ED2D5A6B2A0279940086D777 /* Assets.xcassets */,
 				ED2D5A882A027E5C0086D777 /* Inertia */,
 				ED2D5A7F2A027BB70086D777 /* AppRouter.swift */,
-				ED2D5A912A0280760086D777 /* IndexController.swift */,
+				ED2D5A912A0280760086D777 /* RootController.swift */,
 				ED2D5A702A0279940086D777 /* Persistence.swift */,
 				ED2D5A722A0279940086D777 /* native_inertia_boilerplate.xcdatamodeld */,
 				ED2D5A6D2A0279940086D777 /* Preview Content */,
@@ -165,6 +168,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED2D5A942A0284360086D777 /* www in Resources */,
 				ED2D5A6F2A0279940086D777 /* Preview Assets.xcassets in Resources */,
 				ED2D5A6C2A0279940086D777 /* Assets.xcassets in Resources */,
 			);
@@ -181,7 +185,7 @@
 				ED2D5A6A2A0279920086D777 /* ContentView.swift in Sources */,
 				ED2D5A8E2A027E5C0086D777 /* InertiaRouter.swift in Sources */,
 				ED2D5A8D2A027E5C0086D777 /* InertiaRoute.swift in Sources */,
-				ED2D5A922A0280760086D777 /* IndexController.swift in Sources */,
+				ED2D5A922A0280760086D777 /* RootController.swift in Sources */,
 				ED2D5A902A027E5C0086D777 /* Inertia.swift in Sources */,
 				ED2D5A8F2A027E5C0086D777 /* InertiaRequest.swift in Sources */,
 				ED2D5A682A0279920086D777 /* native_inertia_boilerplateApp.swift in Sources */,
