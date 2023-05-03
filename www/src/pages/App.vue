@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { router } from "@inertiajs/vue3";
 
-// router.get("/");
+router.get("/");
 </script>
 
 <template>

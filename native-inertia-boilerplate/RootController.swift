@@ -10,8 +10,8 @@ import Foundation
 class RootController {
     static func index() -> String {
         return Inertia.render(
-            component: "Index",
-            props: [:],
+            component: "Root/Index",
+            props: ["time": ISO8601DateFormatter().string(from: Date())],
             url: "/"
         );
     }
@@ -19,7 +19,7 @@ class RootController {
     
     static func show(id: String) -> String {
         return Inertia.render(
-            component: "Index",
+            component: "Root/Show",
             props: ["id": id],
             url: "/"
         );
