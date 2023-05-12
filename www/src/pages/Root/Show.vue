@@ -55,7 +55,7 @@ a {
   color: white;
   display: inline-block;
   margin-right: 5px;
-  padding: 3px 30px;
+  padding: 12px 24px;
 }
 </style>
 
