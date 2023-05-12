@@ -1,9 +1,35 @@
 <script setup lang="ts">
-import {Link} from "@inertiajs/vue3";
+import { Link } from "@inertiajs/vue3";
+import { defineProps } from "vue";
 
 let props = defineProps<{
-  id: number;
+  time: string;
+  id: string;
 }>();
+
+let startTime: number;
+let stopTime: number;
+
+const startTimer = () => {
+  startTime = Date.now();
+  localStorage.setItem("startTime", String(startTime));
+};
+
+const stopTimer = () => {
+  const storedStartTime = localStorage.getItem("startTime");
+  if (storedStartTime) {
+    startTime = parseInt(storedStartTime); // In localstorage strings are stored- conversion of the string into a number
+    stopTime = Date.now();
+    const duration = stopTime - startTime;
+    console.log("Starttime:", startTime);
+    console.log("Stoptime:", stopTime);
+    console.log(`%c Duration: ${duration} ms`, 'color: green');
+  }
+
+  localStorage.removeItem("startTime");
+};
+
+stopTimer();
 </script>
 
 <template>
@@ -11,11 +37,25 @@ let props = defineProps<{
   </header>
 
   <main>
-    <h1 class="font-bold text-2xl">{{ props.id }}</h1>
-    <Link href="/">Index</Link>
+    <Link v-for="i in 3" :key="i" :href="`/${i}`" @click="startTimer">Seite {{ i }}</Link>
+    <h2 class="font-bold text-2xl">Current page: {{ props.id }}</h2>
+    <h3>Loaded at: {{ props.time }}</h3>
   </main>
 </template>
 
 <style scoped>
+main {
+  padding-top: 20px;
+}
 
+a {
+  all: unset;
+  background-color: #0369a1;
+  border-radius: 4px;
+  color: white;
+  display: inline-block;
+  margin-right: 5px;
+  padding: 3px 30px;
+}
 </style>
+

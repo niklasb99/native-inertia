@@ -16,11 +16,10 @@ class RootController {
         );
     }
     
-    
     static func show(id: String) -> String {
         return Inertia.render(
             component: "Root/Show",
-            props: ["id": id],
+            props: ["id": id, "time": ISO8601DateFormatter().string(from: Date())],
             url: "/"
         );
     }
