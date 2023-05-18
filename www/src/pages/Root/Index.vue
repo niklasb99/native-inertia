@@ -1,24 +1,59 @@
 <script setup lang="ts">
-import {Link} from "@inertiajs/vue3";
+import { Link } from "@inertiajs/vue3";
 
-let props = defineProps<{
-  time: number;
-}>();
+const backgroundColor1 = "007AFE"
+const backgroundColor2 = "35C759"
+const backgroundColor3 = "FF9500"
+
+
+const startTimer = () => {
+  let startTime = Date.now();
+  localStorage.setItem("startTime", String(startTime));
+};
 </script>
 
 <template>
-  <header>
-  </header>
-
   <main>
-    <h2>Loaded: {{ props.time }}</h2>
-    <Link v-for="i in 3" :key="i" :href="`/${i}`">{{ i }}</Link>
+    <p class="headline">Requirement 1</p>
+    <p class="subheadline">Routing</p>
+    <div class="button--container">
+      <Link :href="`/1/${backgroundColor1}`" :style="{ backgroundColor: `#${backgroundColor1}` }" @click="startTimer">Page 1</Link>
+      <Link :href="`/2/${backgroundColor2}`" :style="{ backgroundColor: `#${backgroundColor2}` }" @click="startTimer">Page 2</Link>
+      <Link :href="`/3/${backgroundColor3}`" :style="{ backgroundColor: `#${backgroundColor3}` }" @click="startTimer">Page 3</Link>
+    </div>
   </main>
 </template>
 
 <style scoped>
-  a{
-    display: block;
-    margin-bottom: 0.25rem;
-  }
+main {
+  padding-top: 120px;
+  text-align: center;
+}
+
+.headline {
+  font-size: 27px;
+  margin: 0;
+}
+
+.subheadline {
+  font-size: 27px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.button--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 136px;
+}
+
+a {
+  all: unset;
+  border-radius: 4px;
+  color: white;
+  margin-bottom: 36px;
+  padding: 16px 15px;
+  font-size: 16px;
+}
 </style>

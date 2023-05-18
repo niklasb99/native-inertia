@@ -5,20 +5,16 @@ import { defineProps } from "vue";
 let props = defineProps<{
   time: string;
   id: string;
+  color: string;
 }>();
 
 let startTime: number;
 let stopTime: number;
 
-const startTimer = () => {
-  startTime = Date.now();
-  localStorage.setItem("startTime", String(startTime));
-};
-
 const stopTimer = () => {
   const storedStartTime = localStorage.getItem("startTime");
   if (storedStartTime) {
-    startTime = parseInt(storedStartTime); // In localstorage strings are stored- conversion of the string into a number
+    startTime = parseInt(storedStartTime); // In localstorage strings are stored - conversion of the string into a number
     stopTime = Date.now();
     const duration = stopTime - startTime;
     console.log("Starttime:", startTime);
@@ -30,32 +26,53 @@ const stopTimer = () => {
 };
 
 stopTimer();
+
 </script>
 
 <template>
-  <header>
-  </header>
+  <main :style="{ backgroundColor: `#${props.color}` }">
+    <Link :href="`/`"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-arrow-left-circle">
+      <circle cx="12" cy="12" r="10"></circle>
+      <polyline points="12 8 8 12 12 16"></polyline>
+      <line x1="16" y1="12" x2="8" y2="12"></line>
+    </svg></Link>
 
-  <main>
-    <Link v-for="i in 3" :key="i" :href="`/${i}`" @click="startTimer">Seite {{ i }}</Link>
-    <h2 class="font-bold text-2xl">Current page: {{ props.id }}</h2>
-    <h3>Loaded at: {{ props.time }}</h3>
+    <div class="content--container">
+      <h2 class="headline">Page {{ props.id }}</h2>
+      <p>Opened at: {{ props.time }}</p>
+    </div>
   </main>
 </template>
 
 <style scoped>
 main {
   padding-top: 20px;
+  color: white;
+  height: 100vh;
+}
+
+.content--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200px;
+}
+
+.headline {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 a {
   all: unset;
-  background-color: #0369a1;
-  border-radius: 4px;
-  color: white;
-  display: inline-block;
-  margin-right: 5px;
-  padding: 12px 24px;
 }
 </style>
 
+<style>
+body {
+  margin: 0;
+}
+</style>

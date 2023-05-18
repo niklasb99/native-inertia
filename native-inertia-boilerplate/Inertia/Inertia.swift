@@ -15,13 +15,13 @@ class Inertia {
   }
 
   static func render(component: String, props: [String: Any], url: String) -> String {
-    print("Props", props)
+    //print("Props", props)
     let response = JSON([
       "component": component,
       "props": props,
       "url": url,
     ])
-    print("Response", response)
+    //print("Response", response)
     return """
       window.dispatchEvent(new CustomEvent('native-inertia', { detail: \(response.rawString()!) }));
       """

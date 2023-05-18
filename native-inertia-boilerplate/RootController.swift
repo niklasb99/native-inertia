@@ -8,6 +8,8 @@
 import Foundation
 
 class RootController {
+    
+    
     static func index() -> String {
         return Inertia.render(
             component: "Root/Index",
@@ -16,10 +18,16 @@ class RootController {
         );
     }
     
-    static func show(id: String) -> String {
+    static func show(id: String, color: String) -> String {
+        var dateFormatter: DateFormatter {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm:ss"
+            return formatter
+        }
+        
         return Inertia.render(
             component: "Root/Show",
-            props: ["id": id, "time": ISO8601DateFormatter().string(from: Date())],
+            props: ["id": id, "time": dateFormatter.string(from: Date()), "color": color],
             url: "/"
         );
     }

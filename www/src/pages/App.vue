@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { router } from "@inertiajs/vue3";
 
-router.get("/1");
+router.get("/");
 </script>
 
 <template>
@@ -9,5 +9,3 @@ router.get("/1");
 
 	<main>Redirect to Root...</main>
 </template>
-
-<style scoped></style>

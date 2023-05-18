@@ -19,7 +19,7 @@ class AppRouter: InertiaRouter {
       
       
   // index
-  self.get("/:id") { (req) -> String in
-      RootController.show(id: req.param("id")!)}
+  self.get("/:id/:color") { (req) -> String in
+      RootController.show(id: req.param("id")!, color: req.param("color")!)}
   }
 }
