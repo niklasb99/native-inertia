@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7745E5B32A1659290093DD91 /* NativeInertiaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7745E5B22A1659290093DD91 /* NativeInertiaView.swift */; };
+		7745E5B52A1659370093DD91 /* NativeSwiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7745E5B42A1659370093DD91 /* NativeSwiftView.swift */; };
+		7745E5C02A1661310093DD91 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7745E5BF2A1661310093DD91 /* DataManager.swift */; };
+		7745E5C22A1661870093DD91 /* TesttimeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7745E5C12A1661870093DD91 /* TesttimeItem.swift */; };
+		7745E5C92A1665B10093DD91 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7745E5C72A1665B10093DD91 /* Model.xcdatamodeld */; };
+		77E515842A17798100E5CFCF /* ShowTimestamps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E515832A17798100E5CFCF /* ShowTimestamps.swift */; };
 		ED2D5A682A0279920086D777 /* native_inertia_boilerplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A672A0279920086D777 /* native_inertia_boilerplateApp.swift */; };
 		ED2D5A6A2A0279920086D777 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A692A0279920086D777 /* ContentView.swift */; };
 		ED2D5A6C2A0279940086D777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED2D5A6B2A0279940086D777 /* Assets.xcassets */; };
 		ED2D5A6F2A0279940086D777 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED2D5A6E2A0279940086D777 /* Preview Assets.xcassets */; };
 		ED2D5A712A0279940086D777 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A702A0279940086D777 /* Persistence.swift */; };
-		ED2D5A742A0279940086D777 /* native_inertia_boilerplate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A722A0279940086D777 /* native_inertia_boilerplate.xcdatamodeld */; };
 		ED2D5A7C2A027A480086D777 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = ED2D5A7B2A027A480086D777 /* SwiftyJSON */; };
 		ED2D5A802A027BB70086D777 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A7F2A027BB70086D777 /* AppRouter.swift */; };
 		ED2D5A8D2A027E5C0086D777 /* InertiaRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A892A027E5C0086D777 /* InertiaRoute.swift */; };
@@ -21,18 +26,22 @@
 		ED2D5A902A027E5C0086D777 /* Inertia.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A8C2A027E5C0086D777 /* Inertia.swift */; };
 		ED2D5A922A0280760086D777 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A912A0280760086D777 /* RootController.swift */; };
 		ED2D5A942A0284360086D777 /* www in Resources */ = {isa = PBXBuildFile; fileRef = ED2D5A932A0284360086D777 /* www */; };
-		ED2D5A962A0289650086D777 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A952A0289650086D777 /* ContentViewController.swift */; };
 		ED2D5AB02A0296950086D777 /* www-dist in Resources */ = {isa = PBXBuildFile; fileRef = ED2D5AAF2A0296950086D777 /* www-dist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7745E5B22A1659290093DD91 /* NativeInertiaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInertiaView.swift; sourceTree = "<group>"; };
+		7745E5B42A1659370093DD91 /* NativeSwiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSwiftView.swift; sourceTree = "<group>"; };
+		7745E5BF2A1661310093DD91 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		7745E5C12A1661870093DD91 /* TesttimeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesttimeItem.swift; sourceTree = "<group>"; };
+		7745E5C82A1665B10093DD91 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		77E515832A17798100E5CFCF /* ShowTimestamps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTimestamps.swift; sourceTree = "<group>"; };
 		ED2D5A642A0279920086D777 /* native-inertia-boilerplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "native-inertia-boilerplate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED2D5A672A0279920086D777 /* native_inertia_boilerplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = native_inertia_boilerplateApp.swift; sourceTree = "<group>"; };
 		ED2D5A692A0279920086D777 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		ED2D5A6B2A0279940086D777 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED2D5A6E2A0279940086D777 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ED2D5A702A0279940086D777 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		ED2D5A732A0279940086D777 /* native_inertia_boilerplate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = native_inertia_boilerplate.xcdatamodel; sourceTree = "<group>"; };
 		ED2D5A7F2A027BB70086D777 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		ED2D5A892A027E5C0086D777 /* InertiaRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InertiaRoute.swift; sourceTree = "<group>"; };
 		ED2D5A8A2A027E5C0086D777 /* InertiaRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InertiaRouter.swift; sourceTree = "<group>"; };
@@ -40,7 +49,6 @@
 		ED2D5A8C2A027E5C0086D777 /* Inertia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inertia.swift; sourceTree = "<group>"; };
 		ED2D5A912A0280760086D777 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		ED2D5A932A0284360086D777 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
-		ED2D5A952A0289650086D777 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		ED2D5AAF2A0296950086D777 /* www-dist */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "www-dist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,17 +84,21 @@
 		ED2D5A662A0279920086D777 /* native-inertia-boilerplate */ = {
 			isa = PBXGroup;
 			children = (
+				ED2D5A6D2A0279940086D777 /* Preview Content */,
+				ED2D5A882A027E5C0086D777 /* Inertia */,
+				ED2D5A6B2A0279940086D777 /* Assets.xcassets */,
+				ED2D5AAF2A0296950086D777 /* www-dist */,
 				ED2D5A672A0279920086D777 /* native_inertia_boilerplateApp.swift */,
 				ED2D5A692A0279920086D777 /* ContentView.swift */,
-				ED2D5A952A0289650086D777 /* ContentViewController.swift */,
-				ED2D5AAF2A0296950086D777 /* www-dist */,
-				ED2D5A6B2A0279940086D777 /* Assets.xcassets */,
-				ED2D5A882A027E5C0086D777 /* Inertia */,
 				ED2D5A7F2A027BB70086D777 /* AppRouter.swift */,
-				ED2D5A912A0280760086D777 /* RootController.swift */,
 				ED2D5A702A0279940086D777 /* Persistence.swift */,
-				ED2D5A722A0279940086D777 /* native_inertia_boilerplate.xcdatamodeld */,
-				ED2D5A6D2A0279940086D777 /* Preview Content */,
+				ED2D5A912A0280760086D777 /* RootController.swift */,
+				7745E5B22A1659290093DD91 /* NativeInertiaView.swift */,
+				7745E5B42A1659370093DD91 /* NativeSwiftView.swift */,
+				7745E5BF2A1661310093DD91 /* DataManager.swift */,
+				7745E5C12A1661870093DD91 /* TesttimeItem.swift */,
+				7745E5C72A1665B10093DD91 /* Model.xcdatamodeld */,
+				77E515832A17798100E5CFCF /* ShowTimestamps.swift */,
 			);
 			path = "native-inertia-boilerplate";
 			sourceTree = "<group>";
@@ -189,16 +201,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED2D5A712A0279940086D777 /* Persistence.swift in Sources */,
+				7745E5C02A1661310093DD91 /* DataManager.swift in Sources */,
 				ED2D5A6A2A0279920086D777 /* ContentView.swift in Sources */,
 				ED2D5A8E2A027E5C0086D777 /* InertiaRouter.swift in Sources */,
+				7745E5C22A1661870093DD91 /* TesttimeItem.swift in Sources */,
 				ED2D5A8D2A027E5C0086D777 /* InertiaRoute.swift in Sources */,
+				7745E5B52A1659370093DD91 /* NativeSwiftView.swift in Sources */,
 				ED2D5A922A0280760086D777 /* RootController.swift in Sources */,
 				ED2D5A902A027E5C0086D777 /* Inertia.swift in Sources */,
+				7745E5B32A1659290093DD91 /* NativeInertiaView.swift in Sources */,
+				7745E5C92A1665B10093DD91 /* Model.xcdatamodeld in Sources */,
+				77E515842A17798100E5CFCF /* ShowTimestamps.swift in Sources */,
 				ED2D5A8F2A027E5C0086D777 /* InertiaRequest.swift in Sources */,
 				ED2D5A682A0279920086D777 /* native_inertia_boilerplateApp.swift in Sources */,
-				ED2D5A962A0289650086D777 /* ContentViewController.swift in Sources */,
 				ED2D5A802A027BB70086D777 /* AppRouter.swift in Sources */,
-				ED2D5A742A0279940086D777 /* native_inertia_boilerplate.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,13 +434,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		ED2D5A722A0279940086D777 /* native_inertia_boilerplate.xcdatamodeld */ = {
+		7745E5C72A1665B10093DD91 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				ED2D5A732A0279940086D777 /* native_inertia_boilerplate.xcdatamodel */,
+				7745E5C82A1665B10093DD91 /* Model.xcdatamodel */,
 			);
-			currentVersion = ED2D5A732A0279940086D777 /* native_inertia_boilerplate.xcdatamodel */;
-			path = native_inertia_boilerplate.xcdatamodeld;
+			currentVersion = 7745E5C82A1665B10093DD91 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

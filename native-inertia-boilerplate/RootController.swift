@@ -9,9 +9,12 @@ import Foundation
 
 class RootController {
     static func index() -> String {
+        
+        let timestamps: [[Any]] = [[1, true], [2, true], [3, false], [4, true]]
+
         return Inertia.render(
             component: "Root/Index",
-            props: ["time": ISO8601DateFormatter().string(from: Date())],
+            props: ["timestamps": timestamps],
             url: "/"
         );
     }

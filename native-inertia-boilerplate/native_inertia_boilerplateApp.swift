@@ -9,12 +9,14 @@ import SwiftUI
 
 @main
 struct native_inertia_boilerplateApp: App {
-    let persistenceController = PersistenceController.shared
-
+    @StateObject private var manager: DataManager = DataManager()
+    
+    // MARK: - Main rendering function
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(manager)
+                .environment(\.managedObjectContext, manager.container.viewContext)
         }
     }
 }
