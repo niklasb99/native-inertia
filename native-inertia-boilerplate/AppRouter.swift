@@ -10,16 +10,16 @@ import SwiftyJSON
 import WebKit
 
 class AppRouter: InertiaRouter {
-  override func setRoutes() {
-
-  // index
-  self.get("/") { (req) -> String in
-      RootController.index()
-  }
-      
-      
-  // index
-  self.get("/:id/:color") { (req) -> String in
-      RootController.show(id: req.param("id")!, color: req.param("color")!)}
-  }
+    override func setRoutes() {
+        
+        // index
+        self.get("/") { (req) -> String in
+            RootController.index()
+        }
+        
+        // show
+        self.get("/:id") { (req) -> String in
+            RootController.show(id: req.param("id")!)
+        }
+    }
 }

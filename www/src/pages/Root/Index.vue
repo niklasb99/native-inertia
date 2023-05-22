@@ -5,11 +5,17 @@ const backgroundColor1 = "007AFE"
 const backgroundColor2 = "35C759"
 const backgroundColor3 = "FF9500"
 
-
 const startTimer = () => {
   let startTime = Date.now();
   localStorage.setItem("startTime", String(startTime));
 };
+
+let setBackgroundColor = () => {
+  let main = document.getElementsByTagName("body")[0];
+  main.style.backgroundColor = "white"
+}
+
+setBackgroundColor();
 </script>
 
 <template>
@@ -17,9 +23,9 @@ const startTimer = () => {
     <p class="headline">Requirement 1</p>
     <p class="subheadline">Routing</p>
     <div class="button--container">
-      <Link :href="`/1/${backgroundColor1}`" :style="{ backgroundColor: `#${backgroundColor1}` }" @click="startTimer">Page 1</Link>
-      <Link :href="`/2/${backgroundColor2}`" :style="{ backgroundColor: `#${backgroundColor2}` }" @click="startTimer">Page 2</Link>
-      <Link :href="`/3/${backgroundColor3}`" :style="{ backgroundColor: `#${backgroundColor3}` }" @click="startTimer">Page 3</Link>
+      <Link :href="'/1'" :style="{ backgroundColor: `#${backgroundColor1}` }" @click="startTimer">Page 1</Link>
+      <Link :href="'/2'" :style="{ backgroundColor: `#${backgroundColor2}` }" @click="startTimer">Page 2</Link>
+      <Link :href="'/3'" :style="{ backgroundColor: `#${backgroundColor3}` }" @click="startTimer">Page 3</Link>
     </div>
   </main>
 </template>

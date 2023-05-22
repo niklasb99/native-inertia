@@ -5,7 +5,6 @@ import { defineProps } from "vue";
 let props = defineProps<{
   time: string;
   id: string;
-  color: string;
 }>();
 
 let startTime: number;
@@ -21,16 +20,27 @@ const stopTimer = () => {
     console.log("Stoptime:", stopTime);
     console.log(`%c Duration: ${duration} ms`, 'color: green');
   }
-
   localStorage.removeItem("startTime");
 };
 
 stopTimer();
 
+let setBackgroundColor = () => {
+  let main = document.getElementsByTagName("body")[0];
+  if (props.id == "1") {
+    main.style.backgroundColor = "#007AFE"
+  } else if (props.id == "2") {
+    main.style.backgroundColor = "#35C759"
+  } else if (props.id == "3") {
+    main.style.backgroundColor = "#FF9500"
+  }
+}
+
+setBackgroundColor();
 </script>
 
 <template>
-  <main :style="{ backgroundColor: `#${props.color}` }">
+  <main>
     <Link :href="`/`"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
       class="feather feather-arrow-left-circle">

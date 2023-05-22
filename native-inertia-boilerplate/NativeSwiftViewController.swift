@@ -9,9 +9,9 @@ import SwiftUI
 
 struct NativeSwiftViewController: View {
     
-   /* init(){
+    init(){
         UINavigationBar.setAnimationsEnabled(false)
-    }*/
+    }
     
     var body: some View {
         NavigationView {

@@ -18,7 +18,7 @@ class RootController {
         );
     }
     
-    static func show(id: String, color: String) -> String {
+    static func show(id: String) -> String {
         var dateFormatter: DateFormatter {
             let formatter = DateFormatter()
             formatter.dateFormat = "HH:mm:ss"
@@ -27,8 +27,8 @@ class RootController {
         
         return Inertia.render(
             component: "Root/Show",
-            props: ["id": id, "time": dateFormatter.string(from: Date()), "color": color],
-            url: "/"
+            props: ["id": id, "time": dateFormatter.string(from: Date())],
+            url: "/\(id)"
         );
     }
 }
