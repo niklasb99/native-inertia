@@ -23,7 +23,7 @@ class Inertia {
     ])
     print("Response", response)
     return """
-      window.dispatchEvent(new CustomEvent('native-inertia', { detail: \(response.rawString()!) }));
+      window.dispatchEvent(new CustomEvent('native-inertia', { detail: \(response.rawString() ?? "") }));
       """
   }
 

@@ -12,7 +12,6 @@
 		7745E5C02A1661310093DD91 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7745E5BF2A1661310093DD91 /* DataManager.swift */; };
 		7745E5C22A1661870093DD91 /* TesttimeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7745E5C12A1661870093DD91 /* TesttimeItem.swift */; };
 		7745E5C92A1665B10093DD91 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7745E5C72A1665B10093DD91 /* Model.xcdatamodeld */; };
-		77E515842A17798100E5CFCF /* ShowTimestamps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E515832A17798100E5CFCF /* ShowTimestamps.swift */; };
 		ED2D5A682A0279920086D777 /* native_inertia_boilerplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A672A0279920086D777 /* native_inertia_boilerplateApp.swift */; };
 		ED2D5A6A2A0279920086D777 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A692A0279920086D777 /* ContentView.swift */; };
 		ED2D5A6C2A0279940086D777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED2D5A6B2A0279940086D777 /* Assets.xcassets */; };
@@ -35,7 +34,6 @@
 		7745E5BF2A1661310093DD91 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		7745E5C12A1661870093DD91 /* TesttimeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesttimeItem.swift; sourceTree = "<group>"; };
 		7745E5C82A1665B10093DD91 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		77E515832A17798100E5CFCF /* ShowTimestamps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTimestamps.swift; sourceTree = "<group>"; };
 		ED2D5A642A0279920086D777 /* native-inertia-boilerplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "native-inertia-boilerplate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED2D5A672A0279920086D777 /* native_inertia_boilerplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = native_inertia_boilerplateApp.swift; sourceTree = "<group>"; };
 		ED2D5A692A0279920086D777 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 				7745E5BF2A1661310093DD91 /* DataManager.swift */,
 				7745E5C12A1661870093DD91 /* TesttimeItem.swift */,
 				7745E5C72A1665B10093DD91 /* Model.xcdatamodeld */,
-				77E515832A17798100E5CFCF /* ShowTimestamps.swift */,
 			);
 			path = "native-inertia-boilerplate";
 			sourceTree = "<group>";
@@ -211,7 +208,6 @@
 				ED2D5A902A027E5C0086D777 /* Inertia.swift in Sources */,
 				7745E5B32A1659290093DD91 /* NativeInertiaView.swift in Sources */,
 				7745E5C92A1665B10093DD91 /* Model.xcdatamodeld in Sources */,
-				77E515842A17798100E5CFCF /* ShowTimestamps.swift in Sources */,
 				ED2D5A8F2A027E5C0086D777 /* InertiaRequest.swift in Sources */,
 				ED2D5A682A0279920086D777 /* native_inertia_boilerplateApp.swift in Sources */,
 				ED2D5A802A027BB70086D777 /* AppRouter.swift in Sources */,

@@ -9,25 +9,28 @@ import CoreData
 import SwiftUI
 
 struct NativeSwiftView: View {
+    @EnvironmentObject var manager: DataManager
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors: []) private var timeItems: FetchedResults<Testtime>
     
+    @State private var timeItems = [Double: Bool]()
     @State private var fetchStartTime: Double?
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(timeItems) { item in
+                ForEach(Array(timeItems.keys), id: \.self) { key in
+                    let value = timeItems[key]
                     HStack(spacing: 10) {
-                        Image(systemName: item.isChecked ? "checkmark.circle.fill" : "circle")
+                        Image(systemName: value! ? "checkmark.circle.fill" : "circle")
                             .font(.system(size: 24))
                             .onTapGesture {
                                 print("UPDATE")
                                 fetchStartTime = Date().timeIntervalSince1970
-                                item.isChecked = !item.isChecked
+                                manager.updateBool(for: key)
+                                timeItems[key] = !value!
                                 try? viewContext.save()
                             }
-                        Text("\(item.timestamp)")
+                        Text("\(key)")
                         Text("ms")
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -41,7 +44,7 @@ struct NativeSwiftView: View {
                         }
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: deleteItem)
             }
             .background(Color(UIColor(
                 red: CGFloat(242) / 255,
@@ -54,11 +57,17 @@ struct NativeSwiftView: View {
                 if let fetchStartTime = fetchStartTime {
                     let fetchEndTime = Date().timeIntervalSince1970
                     let fetchDuration = (fetchEndTime - fetchStartTime)
-                    
-                    //print("Fetch duration: \(fetchDuration) seconds")
                     print("Fetch duration: \(fetchDuration*1000) milliseconds")
                 }
             }
+            .onAppear {
+                timeItems = manager.fetchData()
+                
+                for item in timeItems {
+                    print(item.key, item.value)
+                }
+            }
+            
             .navigationTitle("Timestamps")
             .toolbar {
                 EditButton()
@@ -74,43 +83,30 @@ struct NativeSwiftView: View {
         }
     }
     
+    
     private func addItem() {
         print("CREATE")
         fetchStartTime = Date().timeIntervalSince1970
-        
-        let newTimestamp = Testtime(context: viewContext)
-        newTimestamp.timestamp = (Date().timeIntervalSince1970)*1000
-        try? viewContext.save()
+        manager.addTimestamp()
+        timeItems = manager.fetchData()
     }
     
-    private func deleteItems(offsets: IndexSet) {
+    private func deleteItem(offsets: IndexSet) {
         print("DELETE")
         fetchStartTime = Date().timeIntervalSince1970
-
+        
+        for offset in offsets {
+            let key = Array(timeItems.keys)[offset]
+            manager.deleteTesttimeWithKey(key)
+        }
+        
         withAnimation {
-            offsets.map { timeItems[$0] }.forEach(viewContext.delete)
-            
-            do {
-                try viewContext.save()
-            } catch {
-                print("Failed to delete items: \(error)")
-            }
+            timeItems = manager.fetchData()
         }
     }
     
     private func deleteAllItems() {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Testtime")
-        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try viewContext.execute(batchDeleteRequest)
-            try viewContext.save() // Save the changes
-            
-            // Manually update the fetched results
-            let deletedObjects = [NSDeletedObjectsKey: timeItems.map { $0.objectID }]
-            NSManagedObjectContext.mergeChanges(fromRemoteContextSave: deletedObjects, into: [viewContext])
-        } catch {
-            print("Failed to delete all items: \(error)")
-        }
+        manager.deleteAllTimestamps()
+        timeItems = manager.fetchData()
     }
 }

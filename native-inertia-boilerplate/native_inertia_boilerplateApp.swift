@@ -14,6 +14,7 @@ struct native_inertia_boilerplateApp: App {
     // MARK: - Main rendering function
     var body: some Scene {
         WindowGroup {
+            let testData = manager.fetchData()
             ContentView()
                 .environmentObject(manager)
                 .environment(\.managedObjectContext, manager.container.viewContext)
