@@ -23,25 +23,23 @@ class AppRouter: InertiaRouter {
         }
         
         // add
-        self.delete("/timestamps/add") { (req) -> String in
+        self.post("/timestamps") { (req) -> String in
             RootController.add()
         }
         
         // update
-        self.delete("/timestamps/update/:id") { (req) -> String in
+        self.patch("/timestamps/:id") { (req) -> String in
             RootController.update(id: req.param("id")!)
         }
         
         // delete
-        self.delete("/timestamps/delete/:id") { (req) -> String in
+        self.delete("/timestamps/:id") { (req) -> String in
             RootController.delete(id: req.param("id")!)
         }
         
         // delete all
-        self.delete("/timestamps/delete-all") { (req) -> String in
+        self.delete("/timestamps") { (req) -> String in
             RootController.deleteAll()
         }
-        
-        
     }
 }

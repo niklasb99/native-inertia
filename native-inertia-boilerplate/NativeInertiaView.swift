@@ -11,7 +11,7 @@ import WebKit
 struct NativeInertiaView: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
-        webView.scrollView.isScrollEnabled = false
+       // webView.scrollView.isScrollEnabled = false
         webView.scrollView.bounces = false
         webView.configuration.userContentController.addUserScript(self.getZoomDisableScript())
 

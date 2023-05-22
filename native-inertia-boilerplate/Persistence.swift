@@ -20,9 +20,10 @@ class PersistenceManager {
         return container
     }()
     
+    /*
     var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
-    }
+    }*/
     
     private init() {}
 }

@@ -11,7 +11,6 @@ class RootController {
     
     static let manager: DataManager = DataManager()
     
-    
     static func index() -> String {
         
         /*let items = manager.fetchData()
@@ -49,43 +48,29 @@ class RootController {
     
     
     static func show(id: String) -> String {
-        return Inertia.render(
-            component: "Root/Show",
-            props: ["id": Double(id)!],
-            url: "/"
-        )
+        return RootController.index()
     }
     
     static func add() -> String {
         do {
             manager.addTimestamp()
-            return Inertia.render(
-                component: "Root/Index",
-                props: [:],
-                url: "/timestamps/add"
-            )
+            return RootController.index()
         }
     }
     
     static func update(id: String) -> String {
         do {
             manager.updateBool(for: Double(id)!)
-            return Inertia.render(
-                component: "Root/Index",
-                props: ["id": id],
-                url: "/timestamps/update/:id"
-            )
+            
+            return RootController.index()
         }
     }
     
     static func delete(id: String) -> String {
         do {
             manager.deleteTesttimeWithKey(Double(id)!)
-            return Inertia.render(
-                component: "Root/Index",
-                props: ["id": Double(id)!],
-                url: "/timestamps/delete/:id"
-            )
+            
+            return RootController.index()
         }
     }
     
@@ -93,11 +78,8 @@ class RootController {
         do {
             manager.deleteAllTimestamps()
             
-            return Inertia.render(
-                component: "Root/Index",
-                props: [:],
-                url: "/timestamps/delete-all"
-            )
+            
+            return RootController.index()
         }
     }
     

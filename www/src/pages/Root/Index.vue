@@ -6,22 +6,19 @@ let props = defineProps<{
 }>();
 
 let deleteAll = () => {
-  router.delete(`/timestamps/delete-all`)
+  router.delete(`/timestamps/`, { preserveScroll: true })
 }
 
 let trash = (id: any) => {
-  router.delete(`/timestamps/delete/${id}`)
-  getData()
+  router.delete(`/timestamps/${id}`, { preserveScroll: true })
 }
 
 let add = () => {
-  router.delete(`/timestamps/add`)
-  getData()
+  router.post(`/timestamps/`, {}, { preserveScroll: true })
 }
 
 let update = (id: any) => {
-  router.delete(`/timestamps/update/${id}`)
-  getData()
+  router.patch(`/timestamps/${id}`, {}, { preserveScroll: true })
 }
 
 let validate = (bool: Boolean) => {
@@ -35,13 +32,10 @@ let validate = (bool: Boolean) => {
   return result;
 }
 
-let getData = () => {
-  window.location.reload()
-}
-
 document.addEventListener("visibilitychange", function() {
   if (document.visibilityState === "visible") {
-    window.location.reload()  }
+  router.reload({ preserveScroll: true })
+  }
 });
 
 </script>
@@ -57,10 +51,6 @@ document.addEventListener("visibilitychange", function() {
         </button>
       </div>
 
-      <div class="navigation--item">
-        <button @click="getData()"> Get Data </button>
-      </div>
-
       <!-- <div class="navigation--item">
         <button @click="editData()">Edit</button>
       </div> -->
@@ -73,13 +63,13 @@ document.addEventListener("visibilitychange", function() {
 
     </div>
 
-    <!-- Headline -->
-    <h1 class="unselectable">Timestamps</h1>
 
     <!-- List -->
     <div class="list--container">
+    <!-- Headline -->
+    <h1 class="unselectable">Timestamps</h1>
 
-      <div class="list--item" v-for="timestamp in props.timestamps">
+      <div class=".unselectable list--item" v-for="timestamp in props.timestamps">
 
         <div><button v-html="validate(timestamp[0])" @click="update(timestamp[1])"></button></div>
         <div>{{ timestamp[1] }} ms</div>
@@ -99,7 +89,8 @@ document.addEventListener("visibilitychange", function() {
 
 <style>
 main {
-  font-family: Arial, Helvetica, sans-serif
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
 }
 
 body {
@@ -125,15 +116,29 @@ h1 {
 }
 
 button {
-  all: unset
+  all: unset;
+}
+
+button:focus {
+  all: unset;
 }
 
 .navigation--container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
+  background-color: #F2F2F7;
+}
+
+.navigation--item {
+  padding: 12px;
 }
 
 .list--container {
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
   gap: 1px;
