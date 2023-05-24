@@ -12,39 +12,20 @@ class RootController {
     static let manager: DataManager = DataManager()
     
     static func index() -> String {
-        
-        /*let items = manager.fetchData()
-        for item in items {
-            print(item)
-        }*/
-        
-        // CoreData Fetch Request
-        let fetchRequest: NSFetchRequest<Testtime> = Testtime.fetchRequest()
-        
-        // Core Data Context
-        let context = PersistenceManager.shared.persistentContainer.viewContext
-        
-        do {
-            // Fetch Testtime objects from Core Data
-            let testtimes = try context.fetch(fetchRequest)
-            
-            // Convert Testtime objects to desired format (e.g., [[Any]])
-            let timestamps: [[Any]] = testtimes.map { [$0.isChecked, $0.timestamp] }
-            
-            // Render the Inertia response with the fetched data
-            return Inertia.render(
-                component: "Root/Index",
-                props: ["timestamps": timestamps],
-                url: "/"
-            )
-        } catch {
-            // Handle any errors that occur during the fetch process
-            print("Failed to fetch Testtime objects: \(error)")
-            // You can return an error response or handle it in any other appropriate way
-            return "Error occurred while fetching data."
+        let data = manager.fetchData()
+        var timestamps: [[Any]] = []
+
+        for (key, value) in data {
+            let item: [Any] = [value, key]
+            timestamps.append(item)
         }
+        
+        return Inertia.render(
+            component: "Root/Index",
+            props: ["timestamps": timestamps],
+            url: "/"
+        )
     }
-    
     
     
     static func show(id: String) -> String {

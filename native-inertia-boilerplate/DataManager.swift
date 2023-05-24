@@ -13,15 +13,9 @@ class DataManager: NSObject, ObservableObject {
     
     @Published var timeItems = [Double: Bool]()
     fileprivate var managedObjectContext: NSManagedObjectContext
-    let container: NSPersistentContainer
+    let container: NSPersistentContainer = PersistenceManager.persistentContainer
     
     override init() {
-        container = NSPersistentContainer(name: "Model")
-        container.loadPersistentStores { (description, error) in
-            if let error = error {
-                fatalError("Error loading Core Data: \(error)")
-            }
-        }
         managedObjectContext = container.viewContext
         super.init()
     }

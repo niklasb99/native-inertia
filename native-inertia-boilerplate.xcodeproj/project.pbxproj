@@ -10,7 +10,6 @@
 		7745E5B32A1659290093DD91 /* NativeInertiaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7745E5B22A1659290093DD91 /* NativeInertiaView.swift */; };
 		7745E5B52A1659370093DD91 /* NativeSwiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7745E5B42A1659370093DD91 /* NativeSwiftView.swift */; };
 		7745E5C02A1661310093DD91 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7745E5BF2A1661310093DD91 /* DataManager.swift */; };
-		7745E5C22A1661870093DD91 /* TesttimeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7745E5C12A1661870093DD91 /* TesttimeItem.swift */; };
 		7745E5C92A1665B10093DD91 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7745E5C72A1665B10093DD91 /* Model.xcdatamodeld */; };
 		ED2D5A682A0279920086D777 /* native_inertia_boilerplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A672A0279920086D777 /* native_inertia_boilerplateApp.swift */; };
 		ED2D5A6A2A0279920086D777 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A692A0279920086D777 /* ContentView.swift */; };
@@ -32,7 +31,6 @@
 		7745E5B22A1659290093DD91 /* NativeInertiaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInertiaView.swift; sourceTree = "<group>"; };
 		7745E5B42A1659370093DD91 /* NativeSwiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSwiftView.swift; sourceTree = "<group>"; };
 		7745E5BF2A1661310093DD91 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		7745E5C12A1661870093DD91 /* TesttimeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesttimeItem.swift; sourceTree = "<group>"; };
 		7745E5C82A1665B10093DD91 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		ED2D5A642A0279920086D777 /* native-inertia-boilerplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "native-inertia-boilerplate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED2D5A672A0279920086D777 /* native_inertia_boilerplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = native_inertia_boilerplateApp.swift; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 				7745E5B22A1659290093DD91 /* NativeInertiaView.swift */,
 				7745E5B42A1659370093DD91 /* NativeSwiftView.swift */,
 				7745E5BF2A1661310093DD91 /* DataManager.swift */,
-				7745E5C12A1661870093DD91 /* TesttimeItem.swift */,
 				7745E5C72A1665B10093DD91 /* Model.xcdatamodeld */,
 			);
 			path = "native-inertia-boilerplate";
@@ -201,7 +198,6 @@
 				7745E5C02A1661310093DD91 /* DataManager.swift in Sources */,
 				ED2D5A6A2A0279920086D777 /* ContentView.swift in Sources */,
 				ED2D5A8E2A027E5C0086D777 /* InertiaRouter.swift in Sources */,
-				7745E5C22A1661870093DD91 /* TesttimeItem.swift in Sources */,
 				ED2D5A8D2A027E5C0086D777 /* InertiaRoute.swift in Sources */,
 				7745E5B52A1659370093DD91 /* NativeSwiftView.swift in Sources */,
 				ED2D5A922A0280760086D777 /* RootController.swift in Sources */,

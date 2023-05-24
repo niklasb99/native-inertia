@@ -138,7 +138,7 @@ button:focus {
 }
 
 .list--container {
-  margin-top: 80px;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   gap: 1px;
@@ -160,8 +160,4 @@ button:focus {
 
   align-items: center;
 }
-
-/* .delete-icon {
-  visibility: hidden;
-} */
 </style>

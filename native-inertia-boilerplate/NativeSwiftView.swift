@@ -62,10 +62,6 @@ struct NativeSwiftView: View {
             }
             .onAppear {
                 timeItems = manager.fetchData()
-                
-                for item in timeItems {
-                    print(item.key, item.value)
-                }
             }
             
             .navigationTitle("Timestamps")

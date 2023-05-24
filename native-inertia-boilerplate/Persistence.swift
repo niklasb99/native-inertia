@@ -10,7 +10,7 @@ import CoreData
 class PersistenceManager {
     static let shared = PersistenceManager()
     
-    lazy var persistentContainer: NSPersistentContainer = {
+    static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Model")
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
@@ -19,11 +19,6 @@ class PersistenceManager {
         }
         return container
     }()
-    
-    /*
-    var viewContext: NSManagedObjectContext {
-        return persistentContainer.viewContext
-    }*/
     
     private init() {}
 }
