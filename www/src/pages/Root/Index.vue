@@ -5,20 +5,35 @@ let props = defineProps<{
   timestamps: Array<[boolean, number]>;
 }>();
 
-let deleteAll = () => {
+let startTime = 0;
+let stopTime = 0;
+
+window.addEventListener('native-inertia', function(event) {
+  let stopTime = Date.now()
+  let erg = stopTime - startTime;
+  console.log('Change', erg);
+});
+
+let deleteAllTimestamps = () => {
   router.delete(`/timestamps/`, { preserveScroll: true })
+  startTime = Date.now()
 }
 
-let trash = (id: any) => {
+let deleteTimestamp = (id: any) => {
   router.delete(`/timestamps/${id}`, { preserveScroll: true })
+  startTime = Date.now()
 }
 
-let add = () => {
+let addTimestamp = () => {
   router.post(`/timestamps/`, {}, { preserveScroll: true })
+  startTime = Date.now()
+  props.timestamps.push([true, 12345]); // Beispielhafte Änderung an 'timestamps'
+
 }
 
-let update = (id: any) => {
+let updateTimestamp = (id: any) => {
   router.patch(`/timestamps/${id}`, {}, { preserveScroll: true })
+  startTime = Date.now()
 }
 
 let validate = (bool: Boolean) => {
@@ -32,12 +47,13 @@ let validate = (bool: Boolean) => {
   return result;
 }
 
+
+
 document.addEventListener("visibilitychange", function() {
   if (document.visibilityState === "visible") {
   router.reload({ preserveScroll: true })
   }
 });
-
 </script>
 
 <template>
@@ -46,17 +62,13 @@ document.addEventListener("visibilitychange", function() {
     <!-- Navigation -->
     <div class="navigation--container">
       <div class="navigation--item">
-        <button @click="deleteAll">
+        <button @click="deleteAllTimestamps">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"> <polyline points="3 6 5 6 21 6"></polyline> <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path> <line x1="10" y1="11" x2="10" y2="17"></line> <line x1="14" y1="11" x2="14" y2="17"></line> </svg>
         </button>
       </div>
 
-      <!-- <div class="navigation--item">
-        <button @click="editData()">Edit</button>
-      </div> -->
-
       <div class="navigation--item">
-        <button @click="add">
+        <button @click="addTimestamp">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
         </button>
       </div>
@@ -66,14 +78,14 @@ document.addEventListener("visibilitychange", function() {
 
     <!-- List -->
     <div class="list--container">
-    <!-- Headline -->
+
     <h1 class="unselectable">Timestamps</h1>
 
       <div class=".unselectable list--item" v-for="timestamp in props.timestamps">
 
-        <div><button v-html="validate(timestamp[0])" @click="update(timestamp[1])"></button></div>
+        <div><button v-html="validate(timestamp[0])" @click="updateTimestamp(timestamp[1])"></button></div>
         <div>{{ timestamp[1] }} ms</div>
-        <button @click="trash(timestamp[1])" class="delete-icon">
+        <button @click="deleteTimestamp(timestamp[1])" class="delete-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"> <polyline points="3 6 5 6 21 6"></polyline> <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path> <line x1="10" y1="11" x2="10" y2="17"></line> <line x1="14" y1="11" x2="14" y2="17"></line> </svg>
         </button>
 
@@ -84,8 +96,9 @@ document.addEventListener("visibilitychange", function() {
   </main>
 </template>
 
+<script lang="ts">
 
-
+</script>
 
 <style>
 main {
