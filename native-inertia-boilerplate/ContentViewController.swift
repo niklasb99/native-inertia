@@ -4,7 +4,7 @@
 //
 //  Created by Mario Hamann on 03.05.23.
 //
-
+/*
 import Foundation
 import SwiftUI
 import WebKit
@@ -18,3 +18,4 @@ class ContentViewController: UIViewController {
         view = Inertia.setup(webView: webView, router: AppRouter(webView:webView))
     }
 }
+*/
