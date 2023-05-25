@@ -12,11 +12,20 @@ struct NativeSwiftView: View {
     @EnvironmentObject var manager: DataManager
     @Environment(\.managedObjectContext) private var viewContext
     
-    @State private var timeItems = [Double: Bool]()
+    @State private var timeItems = [Double: Bool]() {
+        didSet {
+            if let fetchStartTime = fetchStartTime {
+                let fetchEndTime = Date().timeIntervalSince1970
+                let fetchDuration = (fetchEndTime - fetchStartTime)
+                print("Fetch duration: \(fetchDuration*1000) milliseconds")
+            }
+        }
+    }
     @State private var fetchStartTime: Double?
     
     var body: some View {
         NavigationView {
+
             List {
                 ForEach(Array(timeItems.keys), id: \.self) { key in
                     let value = timeItems[key]
@@ -46,24 +55,16 @@ struct NativeSwiftView: View {
                 }
                 .onDelete(perform: deleteItem)
             }
-            .background(Color(UIColor(
+           .background(Color(UIColor(
                 red: CGFloat(242) / 255,
                 green: CGFloat(242) / 255,
                 blue: CGFloat(247) / 255,
                 alpha: 1.0
-            )))
-            
-            .onReceive(timeItems.publisher.first()) { _ in
-                if let fetchStartTime = fetchStartTime {
-                    let fetchEndTime = Date().timeIntervalSince1970
-                    let fetchDuration = (fetchEndTime - fetchStartTime)
-                    print("Fetch duration: \(fetchDuration*1000) milliseconds")
-                }
-            }
+            )).edgesIgnoringSafeArea(.all))
+
             .onAppear {
                 timeItems = manager.fetchData()
             }
-            
             .navigationTitle("Timestamps")
             .toolbar {
                 EditButton()
@@ -77,8 +78,8 @@ struct NativeSwiftView: View {
                 })
             )
         }
+        
     }
-    
     
     private func addItem() {
         print("CREATE")
@@ -102,6 +103,7 @@ struct NativeSwiftView: View {
     }
     
     private func deleteAllItems() {
+        fetchStartTime = Date().timeIntervalSince1970
         manager.deleteAllTimestamps()
         timeItems = manager.fetchData()
     }

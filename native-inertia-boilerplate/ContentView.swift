@@ -10,8 +10,8 @@ import WebKit
 
 struct ContentView: View {
     init() {
-            UITabBar.appearance().tintColor = .black
-        }
+        UITabBar.appearance().tintColor = .black
+    }
     
     var body: some View {
         TabView {
@@ -20,29 +20,24 @@ struct ContentView: View {
                     Image(systemName: "dot.circle")
                     Text("NativeInertia")
                 }
-                
+                .edgesIgnoringSafeArea(.all)
+            
             SwiftViewContainer()
-                            .tabItem {
-                                Image(systemName: "staroflife.circle")
-                                Text("NativeSwift")
-                            }
+                .tabItem {
+                    Image(systemName: "staroflife.circle")
+                    Text("NativeSwift")
+                }
         }
         .accentColor(.black)
     }
-        
 }
+
 
 struct WebViewContainer: View {
     var body: some View {
-            NativeInertiaView()
-            .background(Color(UIColor(
-                red: CGFloat(242) / 255,
-                green: CGFloat(242) / 255,
-                blue: CGFloat(247) / 255,
-                alpha: 1.0
-            )))
-
+        NativeInertiaView()
     }
+    
 }
 
 struct SwiftViewContainer: View {

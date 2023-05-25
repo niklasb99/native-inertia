@@ -1,34 +1,35 @@
 <script setup lang="ts">
 import { router } from '@inertiajs/vue3';
+import { watch } from 'vue';
 
-let props = defineProps<{
-  timestamps: Array<[boolean, number]>;
-}>();
-
-let startTime = 0;
-let stopTime = 0;
-
-window.addEventListener('native-inertia', function(event) {
-  let stopTime = Date.now()
-  let erg = stopTime - startTime;
-  console.log('Change', erg);
+let props = defineProps({
+  timestamps: {
+    type: Array,
+    default: () => []
+  }
 });
 
-let deleteAllTimestamps = () => {
+let startTime = 0;
+
+watch(() => props.timestamps, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    window.dispatchEvent(new CustomEvent('timestamps-changed', { detail: newVal }));
+  }
+});
+
+let deleteAllItems = () => {
   router.delete(`/timestamps/`, { preserveScroll: true })
   startTime = Date.now()
 }
 
-let deleteTimestamp = (id: any) => {
+let deleteItem = (id: any) => {
   router.delete(`/timestamps/${id}`, { preserveScroll: true })
   startTime = Date.now()
 }
 
-let addTimestamp = () => {
+let addItem = () => {
   router.post(`/timestamps/`, {}, { preserveScroll: true })
   startTime = Date.now()
-  props.timestamps.push([true, 12345]); // Beispielhafte Änderung an 'timestamps'
-
 }
 
 let updateTimestamp = (id: any) => {
@@ -36,7 +37,7 @@ let updateTimestamp = (id: any) => {
   startTime = Date.now()
 }
 
-let validate = (bool: Boolean) => {
+let validate = (bool: any) => {
   let result = '';
 
   if (bool == true) {
@@ -47,11 +48,15 @@ let validate = (bool: Boolean) => {
   return result;
 }
 
+window.addEventListener('timestamps-changed', function (event) {
+  let stopTime = Date.now()
+  let erg = stopTime - startTime;
+  console.log('Change', erg);
+});
 
-
-document.addEventListener("visibilitychange", function() {
+document.addEventListener("visibilitychange", function () {
   if (document.visibilityState === "visible") {
-  router.reload({ preserveScroll: true })
+    router.reload({ preserveScroll: true })
   }
 });
 </script>
@@ -62,43 +67,51 @@ document.addEventListener("visibilitychange", function() {
     <!-- Navigation -->
     <div class="navigation--container">
       <div class="navigation--item">
-        <button @click="deleteAllTimestamps">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"> <polyline points="3 6 5 6 21 6"></polyline> <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path> <line x1="10" y1="11" x2="10" y2="17"></line> <line x1="14" y1="11" x2="14" y2="17"></line> </svg>
+        <button @click="deleteAllItems">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-trash-2">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            <line x1="10" y1="11" x2="10" y2="17"></line>
+            <line x1="14" y1="11" x2="14" y2="17"></line>
+          </svg>
         </button>
       </div>
 
       <div class="navigation--item">
-        <button @click="addTimestamp">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+        <button @click="addItem">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-plus">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
         </button>
       </div>
 
     </div>
-
 
     <!-- List -->
     <div class="list--container">
-
-    <h1 class="unselectable">Timestamps</h1>
-
+      <h1 class="unselectable">Timestamps</h1>
       <div class=".unselectable list--item" v-for="timestamp in props.timestamps">
-
         <div><button v-html="validate(timestamp[0])" @click="updateTimestamp(timestamp[1])"></button></div>
-        <div>{{ timestamp[1] }} ms</div>
-        <button @click="deleteTimestamp(timestamp[1])" class="delete-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"> <polyline points="3 6 5 6 21 6"></polyline> <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path> <line x1="10" y1="11" x2="10" y2="17"></line> <line x1="14" y1="11" x2="14" y2="17"></line> </svg>
+        <div class="timestamp">{{ timestamp[1] }} ms</div>
+        <button @click="deleteItem(timestamp[1])" class="delete-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-trash-2">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            <line x1="10" y1="11" x2="10" y2="17"></line>
+            <line x1="14" y1="11" x2="14" y2="17"></line>
+          </svg>
         </button>
-
       </div>
-
     </div>
-
   </main>
 </template>
-
-<script lang="ts">
-
-</script>
 
 <style>
 main {
@@ -164,13 +177,17 @@ button:focus {
 
   display: flex;
 
-  gap: 12px;
   font-size: 18px;
 
   justify-content: space-between;
 
-  gap: 24px;
-
   align-items: center;
 }
-</style>
+
+.timestamp {
+  padding-right: 50px
+}
+
+.delete-icon {
+  padding-right: 10px
+}</style>
