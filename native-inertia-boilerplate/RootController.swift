@@ -6,16 +6,24 @@
 //
 
 import Foundation
+import SwiftUI
 
 class RootController {
-    static func index() -> String {
-        return Inertia.render(
-            component: "Root/Index",
-            props: ["time": ISO8601DateFormatter().string(from: Date())],
-            url: "/"
-        );
-    }
+
+    static let manager: CompassHeading = CompassHeading()
     
+    static func index() -> String {
+        print("index wurde aufgerufen")
+        
+           let data = manager.degrees
+          
+           
+           return Inertia.render(
+               component: "Root/Index",
+               props: ["degree": data],
+               url: "/"
+           )
+       }
     
     static func show(id: String) -> String {
         return Inertia.render(

@@ -100,6 +100,7 @@ struct NativeSwiftView : View {
                 .bold()
         }
         .onChange(of: compassHeading.degrees) { newValue in
+           // print(newValue)
             if Int(newValue) == 0 {
                 self.vibrate()
             }

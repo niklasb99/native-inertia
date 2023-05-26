@@ -32,6 +32,7 @@
 		77455ED82A1F975B005E0199 /* NativeInertiaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInertiaView.swift; sourceTree = "<group>"; };
 		77455EDA2A1F9776005E0199 /* NativeSwiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSwiftView.swift; sourceTree = "<group>"; };
 		77455EDC2A1F9F42005E0199 /* CompassHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassHeading.swift; sourceTree = "<group>"; };
+		77455EDF2A20ACBF005E0199 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		ED2D5A642A0279920086D777 /* native-inertia-boilerplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "native-inertia-boilerplate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED2D5A672A0279920086D777 /* native_inertia_boilerplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = native_inertia_boilerplateApp.swift; sourceTree = "<group>"; };
 		ED2D5A692A0279920086D777 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,12 +63,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77455EDE2A20ACBE005E0199 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77455EDF2A20ACBF005E0199 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ED2D5A5B2A0279920086D777 = {
 			isa = PBXGroup;
 			children = (
 				ED2D5A932A0284360086D777 /* www */,
 				ED2D5A662A0279920086D777 /* native-inertia-boilerplate */,
 				ED2D5A652A0279920086D777 /* Products */,
+				77455EDE2A20ACBE005E0199 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

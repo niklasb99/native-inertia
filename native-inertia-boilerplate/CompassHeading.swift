@@ -16,6 +16,11 @@ class CompassHeading: NSObject, ObservableObject, CLLocationManagerDelegate {
             objectWillChange.send()
         }
     }
+    var speed: Double = .zero {
+        didSet {
+            objectWillChange.send()
+        }
+    }
     
     private let locationManager: CLLocationManager
     
@@ -40,3 +45,4 @@ class CompassHeading: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.degrees = -1 * newHeading.magneticHeading
     }
 }
+
