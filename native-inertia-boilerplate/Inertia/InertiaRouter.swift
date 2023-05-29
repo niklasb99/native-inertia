@@ -1,4 +1,3 @@
-
 ////////////////////////////////////////////////////////////////////////////
 // Copyright 2015 Viacom Inc.
 //
@@ -49,24 +48,20 @@ public class InertiaRouter: NSObject, WKScriptMessageHandler {
     self.setRoutes()
 
     // Here is our "listener" for requests
-    self.handleRequestFromWebview(message: message)
+    self.handleRequestFromWebvie(message: message)
   }
 
-  private func handleRequestFromWebview(message: WKScriptMessage) {
+  private func handleRequestFromWebvie(message: WKScriptMessage) {
     let request = JSON(Data((message.body as! String).utf8))
     let method = request["method"].stringValue
     let data = request["data"].dictionaryObject!
 
     let originalURL = request["url"].stringValue
-      
-      print("originalURL", originalURL)
     // Replace the base with the new base URL
     let url = URL(
       string: originalURL.replacingOccurrences(
-        of: "file://", with: "inertiaroute://")
+        of: "http://localhost:5173/", with: "inertiaroute://")
     )!
-     
-      print("URL: ", url)
 
     self.match(method, url, data)
   }
