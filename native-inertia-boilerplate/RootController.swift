@@ -13,11 +13,7 @@ class RootController {
     static let manager: CompassHeading = CompassHeading()
     
     static func index() -> String {
-        print("index wurde aufgerufen")
-        
            let data = manager.degrees
-          
-           
            return Inertia.render(
                component: "Root/Index",
                props: ["degree": data],

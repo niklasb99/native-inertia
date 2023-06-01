@@ -1,53 +1,70 @@
 <script setup lang="ts">
-import { router } from '@inertiajs/vue3';
-import { watch } from 'vue';
+import { router } from "@inertiajs/vue3";
 
 let props = defineProps<{
-  degree: number;
+  degree: number
 }>();
 
-let update = () => {
-  location.reload()
+function handleVisibilityChange() {
+  if (!document.hidden) {
+    setInterval(function () {
+      router.get("/");
+    }, 500);
+  }
 }
 
-document.addEventListener("visibilitychange", function () {
-  if (document.visibilityState === "visible") {
-    router.reload()
-    router.get("/");
+document.addEventListener("visibilitychange", handleVisibilityChange);
 
-  }
-});
 </script>
 
 <template>
+  <header></header>
+
   <main>
+    <div>{{ -1 * (props.degree) }}</div>
 
+    <div class="fixpunkt-top"></div>
 
-        <div><button @click="update">UPDATE!</button></div>
-      <div>{{ props.degree }}</div>
-   
+    <div class="compass1">
+      <img src="../../assets/compass-g0c7a5e191_1280.png" id="compass" :style="`transform: rotate(${props.degree}deg)`">
+    </div>
   </main>
 </template>
 
-<style>
+<style scoped>
 main {
-  font-family: Arial, Helvetica, sans-serif;
-  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
-body {
-  margin: 0;
-  background-color: #F2F2F7;
-  padding-top: 6px;
-  padding-left: 18px;
-  padding-right: 18px;
+.fixpunkt-top {
+  border: 3px solid black;
+  height: 40px;
+  width: 0;
+
+  position: absolute;
+  top: 80px;
 }
 
-button {
-  all: unset;
-  background-color: rgb(33, 149, 149);
-  color: white;
-  padding: 100px;
+.compass1 {
+  border: 5px;
+  border-color: black;
+  border-style: dotted;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 150px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+img {
+  height: 225px;
+  width: 225px;
+  transition: transform 0.3s ease-in-out;
+}
 </style>

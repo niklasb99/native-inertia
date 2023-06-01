@@ -21,7 +21,7 @@ class Inertia {
       "props": props,
       "url": url,
     ])
-    print("Response", response)
+    //print("Response", response)
     return """
       window.dispatchEvent(new CustomEvent('native-inertia', { detail: \(response.rawString()!) }));
       """

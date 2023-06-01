@@ -1,21 +1,12 @@
 <script setup lang="ts">
-import {Link} from "@inertiajs/vue3";
+import { router } from "@inertiajs/vue3";
 
-let props = defineProps<{
-  id: number;
-}>();
 </script>
 
 <template>
-  <header>
-  </header>
+	<header></header>
 
-  <main>
-    <h1 class="font-bold text-2xl">{{ props.id }}</h1>
-    <Link href="/">Index</Link>
-  </main>
+	<main>Redirect to Root...</main>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
