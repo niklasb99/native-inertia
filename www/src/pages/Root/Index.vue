@@ -1,28 +1,29 @@
 <script setup lang="ts">
-import { router } from "@inertiajs/vue3";
+import { ref, onMounted, onUnmounted } from 'vue';
+import { router } from '@inertiajs/vue3';
 
 let props = defineProps<{
   degree: number
 }>();
 
-function handleVisibilityChange() {
-  if (!document.hidden) {
-    setInterval(function () {
-      router.get("/");
-    }, 500);
-  }
-}
+const intervalRef = ref<number | undefined>(undefined);
 
-document.addEventListener("visibilitychange", handleVisibilityChange);
+onMounted(() => {
+  intervalRef.value = setInterval(() => {
+    router.get('/');
+  }, 250);
+});
 
+onUnmounted(() => clearInterval(intervalRef.value));
 </script>
 
 <template>
   <header></header>
 
   <main>
-    <div>{{ -1 * (props.degree) }}</div>
+    <div>{{ -1 * props.degree }}</div>
 
+    <div></div>
     <div class="fixpunkt-top"></div>
 
     <div class="compass1">
@@ -30,6 +31,13 @@ document.addEventListener("visibilitychange", handleVisibilityChange);
     </div>
   </main>
 </template>
+
+
+
+
+
+
+
 
 <style scoped>
 main {
@@ -68,3 +76,45 @@ img {
   transition: transform 0.3s ease-in-out;
 }
 </style>
+
+
+
+
+<!-- <script lang="ts">
+import { ref, onMounted, onUnmounted } from "vue";
+
+const degree = ref<number>(0);
+
+const props = {
+  degree: Number
+};
+
+export { degree, props };
+
+// Weitere Logik und Lifecycle-Hooks können hier folgen
+</script>
+
+<script setup lang="ts">
+let eventSource: EventSource | null = null;
+
+onMounted(() => {
+  eventSource = new EventSource("ws://127.0.0.1:5173");
+
+  eventSource.addEventListener("message", (event: any) => {
+    const eventData = JSON.parse(event.data);
+    degree.value = eventData.degree;
+  });
+
+  eventSource.addEventListener("error", (event: any) => {
+    console.error("Error receiving SSE:", event);
+  });
+});
+
+onUnmounted(() => {
+  // Schließe die SSE-Verbindung
+  if (eventSource) {
+    eventSource.close();
+  }
+});
+</script> -->
+

@@ -23,6 +23,11 @@ struct NativeInertiaView: UIViewRepresentable {
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
         // Update the view if needed
+       /* DispatchQueue.main.async {
+            // Code für den SSE-Verbindungsaufbau und Benutzeroberflächenaktualisierungen hier
+            startSSEConnection()
+        }
+*/
     }
     
     // Disable zoom for native feeling
