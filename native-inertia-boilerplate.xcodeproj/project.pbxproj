@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		771C92522A28975400040827 /* SSEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771C92512A28975400040827 /* SSEManager.swift */; };
 		77455ED92A1F975B005E0199 /* NativeInertiaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77455ED82A1F975B005E0199 /* NativeInertiaView.swift */; };
 		77455EDB2A1F9776005E0199 /* NativeSwiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77455EDA2A1F9776005E0199 /* NativeSwiftView.swift */; };
-		77455EDD2A1F9F42005E0199 /* CompassHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77455EDC2A1F9F42005E0199 /* CompassHeading.swift */; };
 		ED2D5A682A0279920086D777 /* native_inertia_boilerplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A672A0279920086D777 /* native_inertia_boilerplateApp.swift */; };
 		ED2D5A6A2A0279920086D777 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A692A0279920086D777 /* ContentView.swift */; };
 		ED2D5A6C2A0279940086D777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED2D5A6B2A0279940086D777 /* Assets.xcassets */; };
@@ -30,11 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		771C92512A28975400040827 /* SSEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSEManager.swift; sourceTree = "<group>"; };
 		771C92532A28A59000040827 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		77455ED82A1F975B005E0199 /* NativeInertiaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInertiaView.swift; sourceTree = "<group>"; };
 		77455EDA2A1F9776005E0199 /* NativeSwiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSwiftView.swift; sourceTree = "<group>"; };
-		77455EDC2A1F9F42005E0199 /* CompassHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassHeading.swift; sourceTree = "<group>"; };
 		77455EDF2A20ACBF005E0199 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		ED2D5A642A0279920086D777 /* native-inertia-boilerplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "native-inertia-boilerplate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED2D5A672A0279920086D777 /* native_inertia_boilerplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = native_inertia_boilerplateApp.swift; sourceTree = "<group>"; };
@@ -103,10 +99,8 @@
 				ED2D5A882A027E5C0086D777 /* Inertia */,
 				ED2D5A7F2A027BB70086D777 /* AppRouter.swift */,
 				ED2D5A912A0280760086D777 /* RootController.swift */,
-				771C92512A28975400040827 /* SSEManager.swift */,
 				ED2D5A702A0279940086D777 /* Persistence.swift */,
 				ED2D5A692A0279920086D777 /* ContentView.swift */,
-				77455EDC2A1F9F42005E0199 /* CompassHeading.swift */,
 				77455ED82A1F975B005E0199 /* NativeInertiaView.swift */,
 				77455EDA2A1F9776005E0199 /* NativeSwiftView.swift */,
 				ED2D5A722A0279940086D777 /* native_inertia_boilerplate.xcdatamodeld */,
@@ -215,11 +209,9 @@
 				77455EDB2A1F9776005E0199 /* NativeSwiftView.swift in Sources */,
 				ED2D5A712A0279940086D777 /* Persistence.swift in Sources */,
 				ED2D5A6A2A0279920086D777 /* ContentView.swift in Sources */,
-				77455EDD2A1F9F42005E0199 /* CompassHeading.swift in Sources */,
 				ED2D5A8E2A027E5C0086D777 /* InertiaRouter.swift in Sources */,
 				ED2D5A8D2A027E5C0086D777 /* InertiaRoute.swift in Sources */,
 				ED2D5A922A0280760086D777 /* RootController.swift in Sources */,
-				771C92522A28975400040827 /* SSEManager.swift in Sources */,
 				ED2D5A902A027E5C0086D777 /* Inertia.swift in Sources */,
 				77455ED92A1F975B005E0199 /* NativeInertiaView.swift in Sources */,
 				ED2D5A8F2A027E5C0086D777 /* InertiaRequest.swift in Sources */,

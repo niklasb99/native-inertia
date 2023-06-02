@@ -5,110 +5,82 @@
 //  Created by Niklas Burger on 25.05.23.
 //
 
-import Foundation
 import SwiftUI
+import MapKit
+import CoreLocation
 
-struct Marker: Hashable {
-    let degrees: Double
-    let label: String
-
-    init(degrees: Double, label: String = "") {
-        self.degrees = degrees
-        self.label = label
+struct MapView: UIViewRepresentable {
+    @ObservedObject var locationManager = LocationManager()
+    
+    func makeUIView(context: Context) -> MKMapView {
+        MKMapView(frame: .zero)
     }
-
-    func degreeText() -> String {
-        return String(format: "%.0f", self.degrees)
-    }
-
-    static func markers() -> [Marker] {
-        return [
-            Marker(degrees: 0, label: "N"),
-            Marker(degrees: 30),
-            Marker(degrees: 60),
-            Marker(degrees: 90, label: "E"),
-            Marker(degrees: 120),
-            Marker(degrees: 150),
-            Marker(degrees: 180, label: "S"),
-            Marker(degrees: 210),
-            Marker(degrees: 240),
-            Marker(degrees: 270, label: "W"),
-            Marker(degrees: 300),
-            Marker(degrees: 330)
-        ]
+    
+    func updateUIView(_ uiView: MKMapView, context: Context) {
+        if let location = locationManager.location {
+            let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+            let region = MKCoordinateRegion(center: coordinate, span: span)
+            
+            uiView.setRegion(region, animated: true)
+            
+            // Remove previous annotations
+            uiView.removeAnnotations(uiView.annotations)
+            
+            // Add current location annotation
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate
+            uiView.addAnnotation(annotation)
+        }
     }
 }
 
-struct CompassMarkerView: View {
-    let marker: Marker
-    let compassDegress: Double
-
-    var body: some View {
-        VStack {
-            Text(marker.degreeText())
-                .fontWeight(.light)
-                .rotationEffect(self.textAngle())
-            
-            Capsule()
-                .frame(width: self.capsuleWidth(),
-                       height: self.capsuleHeight())
-                .foregroundColor(self.capsuleColor())
-            
-            Text(marker.label)
-                .fontWeight(.bold)
-                .rotationEffect(self.textAngle())
-                .padding(.bottom, 180)
-        }.rotationEffect(Angle(degrees: marker.degrees))
+class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+    private let locationManager = CLLocationManager()
+    @Published var location: CLLocationCoordinate2D?
+    @Published var latitude: Double = 0.0
+    @Published var longitude: Double = 0.0
+    
+    override init() {
+        super.init()
+        
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        
+        // Uncomment the line below if you want to receive location updates in the background
+        // locationManager.allowsBackgroundLocationUpdates = true
+        
+        locationManager.startUpdatingLocation()
     }
     
-    private func capsuleWidth() -> CGFloat {
-        return self.marker.degrees == 0 ? 7 : 3
-    }
-
-    private func capsuleHeight() -> CGFloat {
-        return self.marker.degrees == 0 ? 45 : 30
-    }
-
-    private func capsuleColor() -> Color {
-        return self.marker.degrees == 0 ? .red : .gray
-    }
-
-    private func textAngle() -> Angle {
-        return Angle(degrees: -self.compassDegress - self.marker.degrees)
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let newLocation = locations.last else { return }
+        location = newLocation.coordinate
+        latitude = newLocation.coordinate.latitude
+        longitude = newLocation.coordinate.longitude
     }
 }
 
-struct NativeSwiftView : View {
-    @ObservedObject var compassHeading = CompassHeading()
+struct NativeSwiftView: View {
+    @ObservedObject var locationManager = LocationManager()
     
     var body: some View {
         VStack {
-            Capsule()
-                .frame(width: 5, height: 50)
+            MapView()
+                .frame(height: 300)
             
-            ZStack {
-                ForEach(Marker.markers(), id: \.self) { marker in
-                    CompassMarkerView(marker: marker, compassDegress: self.compassHeading.degrees)
-                }
-            }
-            .frame(width: 300, height: 300)
-            .rotationEffect(Angle(degrees: self.compassHeading.degrees))
-            .statusBar(hidden: true)
-            
-            Text("\(Int(self.compassHeading.degrees)*(-1))°")
-                .font(.title)
-                .bold()
-        }
-        .onChange(of: compassHeading.degrees) { newValue in
-           // print(newValue)
-            if Int(newValue) == 0 {
-                self.vibrate()
+            if let location = locationManager.location {
+                Text("Latitude: \(location.latitude)")
+                Text("Longitude: \(location.longitude)")
+            } else {
+                Text("Fetching location...")
             }
         }
     }
-    
-    private func vibrate() {
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.success)
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }

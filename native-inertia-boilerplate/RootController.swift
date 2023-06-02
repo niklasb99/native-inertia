@@ -10,13 +10,17 @@ import SwiftUI
 
 class RootController {
     
-    static let manager: CompassHeading = CompassHeading()
+    static let manager: LocationManager = LocationManager()
     
     static func index() -> String {
-        let data = manager.degrees
+        let gpsDict: [String: Any] = [
+            "longitude": manager.longitude,
+            "latitude": manager.latitude
+        ]
+        
         return Inertia.render(
             component: "Root/Index",
-            props: ["degree": data],
+            props: ["gps": gpsDict],
             url: "/"
         )
     }
