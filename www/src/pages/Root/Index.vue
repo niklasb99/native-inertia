@@ -1,53 +1,24 @@
 <script setup lang="ts">
-import { router } from '@inertiajs/vue3';
-import { watch } from 'vue';
+import { router } from "@inertiajs/vue3";
 
-let props = defineProps<{
-  degree: number;
-}>();
-
-let update = () => {
-  location.reload()
+let takePicture = () => {
+  router.get("/takePicture");
 }
-
-document.addEventListener("visibilitychange", function () {
-  if (document.visibilityState === "visible") {
-    router.reload()
-    router.get("/");
-
-  }
-});
 </script>
 
 <template>
+  <header>
+  </header>
+
   <main>
-
-
-        <div><button @click="update">UPDATE!</button></div>
-      <div>{{ props.degree }}</div>
-   
+    <h1>MOIN</h1>
+    <button @click="takePicture">Take a picture!</button>
   </main>
 </template>
 
-<style>
-main {
-  font-family: Arial, Helvetica, sans-serif;
-  position: relative;
-}
-
-body {
-  margin: 0;
-  background-color: #F2F2F7;
-  padding-top: 6px;
-  padding-left: 18px;
-  padding-right: 18px;
-}
-
-button {
-  all: unset;
-  background-color: rgb(33, 149, 149);
-  color: white;
-  padding: 100px;
-}
-
+<style scoped>
+  a{
+    display: block;
+    margin-bottom: 0.25rem;
+  }
 </style>

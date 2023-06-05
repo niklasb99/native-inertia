@@ -1,114 +1,57 @@
 //
-//  NativeISwift.swift
+//  NativeSwiftView.swift
 //  native-inertia-boilerplate
 //
-//  Created by Niklas Burger on 25.05.23.
+//  Created by Niklas Burger on 02.06.23.
 //
 
-import Foundation
 import SwiftUI
+import PhotosUI
 
-struct Marker: Hashable {
-    let degrees: Double
-    let label: String
-
-    init(degrees: Double, label: String = "") {
-        self.degrees = degrees
-        self.label = label
-    }
-
-    func degreeText() -> String {
-        return String(format: "%.0f", self.degrees)
-    }
-
-    static func markers() -> [Marker] {
-        return [
-            Marker(degrees: 0, label: "N"),
-            Marker(degrees: 30),
-            Marker(degrees: 60),
-            Marker(degrees: 90, label: "E"),
-            Marker(degrees: 120),
-            Marker(degrees: 150),
-            Marker(degrees: 180, label: "S"),
-            Marker(degrees: 210),
-            Marker(degrees: 240),
-            Marker(degrees: 270, label: "W"),
-            Marker(degrees: 300),
-            Marker(degrees: 330)
-        ]
-    }
-}
-
-struct CompassMarkerView: View {
-    let marker: Marker
-    let compassDegress: Double
-
-    var body: some View {
-        VStack {
-            Text(marker.degreeText())
-                .fontWeight(.light)
-                .rotationEffect(self.textAngle())
-            
-            Capsule()
-                .frame(width: self.capsuleWidth(),
-                       height: self.capsuleHeight())
-                .foregroundColor(self.capsuleColor())
-            
-            Text(marker.label)
-                .fontWeight(.bold)
-                .rotationEffect(self.textAngle())
-                .padding(.bottom, 180)
-        }.rotationEffect(Angle(degrees: marker.degrees))
-    }
-    
-    private func capsuleWidth() -> CGFloat {
-        return self.marker.degrees == 0 ? 7 : 3
-    }
-
-    private func capsuleHeight() -> CGFloat {
-        return self.marker.degrees == 0 ? 45 : 30
-    }
-
-    private func capsuleColor() -> Color {
-        return self.marker.degrees == 0 ? .red : .gray
-    }
-
-    private func textAngle() -> Angle {
-        return Angle(degrees: -self.compassDegress - self.marker.degrees)
-    }
-}
-
-struct NativeSwiftView : View {
-    @ObservedObject var compassHeading = CompassHeading()
+struct NativeSwiftView: View {
+    @ObservedObject private var imageManager = ImageManager()
     
     var body: some View {
         VStack {
-            Capsule()
-                .frame(width: 5, height: 50)
+            Button(action: {
+                imageManager.takePicture()
+            }) {
+                Text("Kamera öffnen")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
             
-            ZStack {
-                ForEach(Marker.markers(), id: \.self) { marker in
-                    CompassMarkerView(marker: marker, compassDegress: self.compassHeading.degrees)
+            ScrollView {
+                LazyVGrid(columns: gridLayout, spacing: 10) {
+                    ForEach(imageManager.images, id: \.self) { imageName in
+                        imageManager.loadImage(imageName: imageName)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 200)
+                            .contextMenu {
+                                Button(action: {
+                                    imageManager.deleteImage(imageName: imageName)
+                                }) {
+                                    Text("Bild löschen")
+                                    Image(systemName: "trash")
+                                }
+                            }
+                    }
                 }
             }
-            .frame(width: 300, height: 300)
-            .rotationEffect(Angle(degrees: self.compassHeading.degrees))
-            .statusBar(hidden: true)
-            
-            Text("\(Int(self.compassHeading.degrees)*(-1))°")
-                .font(.title)
-                .bold()
         }
-        .onChange(of: compassHeading.degrees) { newValue in
-           // print(newValue)
-            if Int(newValue) == 0 {
-                self.vibrate()
-            }
+        .sheet(isPresented: $imageManager.showCamera) {
+            ImagePicker(imageManager: imageManager, images: $imageManager.images)
+        }
+        .onAppear {
+            imageManager.loadSavedImages()
         }
     }
     
-    private func vibrate() {
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.success)
+    var gridLayout: [GridItem] {
+        let gridItem = GridItem(.flexible(), spacing: 10)
+        return Array(repeating: gridItem, count: 3)
     }
 }

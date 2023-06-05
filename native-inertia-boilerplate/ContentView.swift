@@ -29,7 +29,7 @@ struct ContentView: View {
                     Image(systemName: "staroflife.circle")
                     Text("NativeSwift")
                 }
-                .edgesIgnoringSafeArea(.all)
+                //.edgesIgnoringSafeArea(.all)
         }
         .accentColor(.black)
     }

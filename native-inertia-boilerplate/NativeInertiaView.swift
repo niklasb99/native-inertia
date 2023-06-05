@@ -9,11 +9,9 @@ import SwiftUI
 import WebKit
 
 struct NativeInertiaView: UIViewRepresentable {
-    @ObservedObject var compassHeading = CompassHeading()
 
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
-       // webView.scrollView.isScrollEnabled = false
         webView.scrollView.bounces = false
         webView.configuration.userContentController.addUserScript(self.getZoomDisableScript())
 
@@ -34,18 +32,3 @@ struct NativeInertiaView: UIViewRepresentable {
         return WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
     }
 }
-
-/*
-struct NativeInertiaView: View {
-    @ObservedObject var compassHeading = CompassHeading()
-    
-    var body: some View {
-        VStack {
-            Text("\(Int(self.compassHeading.degrees)*(-1))°")
-                .font(.title)
-                .bold()
-        }
-        
-    }
-}
-*/
