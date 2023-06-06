@@ -34,6 +34,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            print("imagePickerController")
             if let image = info[.originalImage] as? UIImage {
                 saveImageToDocumentsDirectory(image)
             }
@@ -42,6 +43,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
         
         func saveImageToDocumentsDirectory(_ image: UIImage) {
+            print("saveImageToDocumentsDirectory")
             let fileManager = FileManager.default
             let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
             guard let imageData = image.jpegData(compressionQuality: 1.0),

@@ -17,6 +17,7 @@ class RootController {
     static func takePicture(imageManager: ImageManager) -> String {
         print("RootController - takePciture()")
         imageManager.takePicture2()
+        
         return "" // Placeholder return value, you can return the response you need
     }
     

@@ -4,6 +4,12 @@ import { router } from "@inertiajs/vue3";
 let takePicture = () => {
   router.get("/takePicture");
 }
+
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    location.reload()
+  } 
+});
 </script>
 
 <template>
