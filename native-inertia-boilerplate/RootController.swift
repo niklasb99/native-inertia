@@ -26,7 +26,6 @@ class RootController {
         return Inertia.render(
             component: "Root/Index",
             props: [
-                        "time": ISO8601DateFormatter().string(from: Date()),
                         "degree": data
                    ],
             url: "/"
