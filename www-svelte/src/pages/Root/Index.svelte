@@ -1,56 +1,39 @@
 <script lang="ts">
   import { router } from "@inertiajs/svelte";
   import { writable } from "svelte/store";
-
   import Compass from "../../assets/compass.png";
 
   export let degree: string;
 
   let startTime: number = 0;
   let endTime: number = 0;
-  const runtimeInSeconds = writable(0);
 
+  const runtimeInSeconds = writable(0);
   const runCompass = writable(null);
   const responseCounter = writable(0);
-  const updateCounter = writable(0);
-  const start = writable(null);
-
-  let intervalId;
 
   const startCompass = () => {
-    startTime = Date.now();
-	runtimeInSeconds.set(0);
-    runCompass.set(1);
-    startRotation();
+	runCompass.set(1);
+    runtimeInSeconds.set(0);
     responseCounter.set(0);
-	updateCounter.set(0);
-
     router.get("/");
+	startTime = Date.now();
   };
 
   const stopCompass = () => {
     runCompass.set(null);
     endTime = Date.now();
     runtimeInSeconds.set((endTime - startTime) / 1000);
-	clearInterval(intervalId);
   };
 
   router.on("success", (event) => {
     if ($runCompass) {
       router.get("/");
       responseCounter.set($responseCounter + 1);
-    }
-  });
-
-  function startRotation() {
-    clearInterval(intervalId);
-    intervalId = setInterval(() => {
       const compass = document.getElementById("compass");
       compass.style.transform = `rotate(${degree}deg)`;
-	  updateCounter.set($updateCounter + 1);
-
-    }, 8);
-  }
+    }
+  });
 </script>
 
 <header />
@@ -74,14 +57,15 @@
     <div>Laufzeit des Kompass: <b>{$runtimeInSeconds.toFixed(2)}</b> sec.</div>
     <br />
 
-    <div><b>Bildaktualisierungen seit Start</b></div>
-    <div>Insgesamt: <b>{$updateCounter}</b></div>
-    <div>Pro Sekunde: <b>{$runtimeInSeconds != 0 ? ($updateCounter / $runtimeInSeconds).toFixed(1) : 0.0}</b></div>
-    <br />
-
     <div><b>Responses seit Start</b></div>
     <div>Insgesamt: <b>{$responseCounter}</b></div>
-    <div>Pro Sekunde: <b>{$runtimeInSeconds != 0 ? ($responseCounter / $runtimeInSeconds).toFixed(1) : 0.0}</b></div>
+    <div>
+      Pro Sekunde: <b
+        >{$runtimeInSeconds != 0
+          ? ($responseCounter / $runtimeInSeconds).toFixed(1)
+          : 0.0}</b
+      >
+    </div>
   </div>
 </main>
 
