@@ -8,7 +8,23 @@
 import SwiftUI
 import PhotosUI
 
-class ImageManager: NSObject, ObservableObject {
+class ImageManager: NSObject, ObservableObject, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    func takePicture2() {
+       
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .camera
+        imagePickerController.delegate = self // Set the delegate to self
+           
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootViewController = windowScene.windows.first?.rootViewController {
+               rootViewController.present(imagePickerController, animated: true, completion: nil)
+        }
+    }
+}
+
+
+    /*
     @Published var images = [String]()
     @Published var showCamera = false // Add the showCamera property
     
@@ -75,20 +91,10 @@ class ImageManager: NSObject, ObservableObject {
     func takePicture() {
             showCamera = true
         }
-    
-    func takePicture2() {
-       
-        let imagePickerController = UIImagePickerController()
-           imagePickerController.sourceType = .camera
-           imagePickerController.delegate = self // Set the delegate to self
-           
-           let keyWindow = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
-           if let rootViewController = keyWindow?.rootViewController {
-               rootViewController.present(imagePickerController, animated: true, completion: nil)
-           }
-    }
-}
+     */
+ 
 
+/*
 extension ImageManager: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
@@ -97,7 +103,8 @@ extension ImageManager: UIImagePickerControllerDelegate, UINavigationControllerD
         
         picker.dismiss(animated: true)
     }
-}
+ */
+
 
 
 

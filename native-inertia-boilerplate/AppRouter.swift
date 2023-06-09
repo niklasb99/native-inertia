@@ -10,7 +10,7 @@ import SwiftyJSON
 import WebKit
 
 class AppRouter: InertiaRouter {
-    let imageManager = ImageManager()
+   let imageManager = ImageManager()
     
     override func setRoutes() {
         // index
@@ -27,5 +27,9 @@ class AppRouter: InertiaRouter {
         self.get("/takePicture") { (req) -> String in
             RootController.takePicture(imageManager: self.imageManager)
         }
+        
+        /*self.get("/getImages") { (req) -> String in
+            RootController.getImages()
+        }*/
     }
 }
