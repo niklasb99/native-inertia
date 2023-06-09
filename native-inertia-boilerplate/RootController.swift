@@ -6,21 +6,14 @@
 //
 
 import Foundation
-import SwiftUI
 
 class RootController {
-    
     static let manager: LocationManager = LocationManager()
-    
+
     static func index() -> String {
-        let gpsDict: [String: Any] = [
-            "longitude": manager.longitude,
-            "latitude": manager.latitude
-        ]
-        
         return Inertia.render(
             component: "Root/Index",
-            props: ["gps": gpsDict],
+            props: ["longitude": manager.longitude, "latitude": manager.latitude],
             url: "/"
         )
     }

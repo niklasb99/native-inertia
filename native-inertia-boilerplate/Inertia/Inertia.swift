@@ -15,13 +15,13 @@ class Inertia {
   }
 
   static func render(component: String, props: [String: Any], url: String) -> String {
-    print("Props", props)
+   // print("Props", props)
     let response = JSON([
       "component": component,
       "props": props,
       "url": url,
     ])
-    //print("Response", response)
+    print("Response", response)
     return """
       window.dispatchEvent(new CustomEvent('native-inertia', { detail: \(response.rawString()!) }));
       """
@@ -29,6 +29,7 @@ class Inertia {
 
   static func setup(webView: WKWebView, router: InertiaRouter) -> WKWebView {
     webView.configuration.userContentController.add(router, name: "native-inertia")
+    //if #available(iOS 16.4, *) { webView.isInspectable = true; }
 
     if let useLocalFileString = ProcessInfo.processInfo.environment["useLocalFile"],
       let _ =
