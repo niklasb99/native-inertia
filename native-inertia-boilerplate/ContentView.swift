@@ -30,12 +30,17 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
         }
         .accentColor(.black)
+        .edgesIgnoringSafeArea(.all)
+
     }
+
 }
 
 struct WebViewContainer: View {
     var body: some View {
         NativeInertiaViewController()
+            .edgesIgnoringSafeArea(.all)
+
     }
 }
 
