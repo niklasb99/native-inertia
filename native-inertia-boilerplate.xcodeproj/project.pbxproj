@@ -10,7 +10,6 @@
 		77AA83332A3329B600E8651F /* NativeSwiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA83322A3329B600E8651F /* NativeSwiftView.swift */; };
 		77AA83352A3329CB00E8651F /* NativeInertiaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA83342A3329CB00E8651F /* NativeInertiaView.swift */; };
 		77AA83372A3329D500E8651F /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA83362A3329D500E8651F /* ImageManager.swift */; };
-		77AA83392A3329E100E8651F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA83382A3329E100E8651F /* ImagePicker.swift */; };
 		ED2D5A682A0279920086D777 /* native_inertia_boilerplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A672A0279920086D777 /* native_inertia_boilerplateApp.swift */; };
 		ED2D5A6A2A0279920086D777 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2D5A692A0279920086D777 /* ContentView.swift */; };
 		ED2D5A6C2A0279940086D777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED2D5A6B2A0279940086D777 /* Assets.xcassets */; };
@@ -32,7 +31,6 @@
 		77AA83322A3329B600E8651F /* NativeSwiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSwiftView.swift; sourceTree = "<group>"; };
 		77AA83342A3329CB00E8651F /* NativeInertiaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInertiaView.swift; sourceTree = "<group>"; };
 		77AA83362A3329D500E8651F /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
-		77AA83382A3329E100E8651F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		ED2D5A642A0279920086D777 /* native-inertia-boilerplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "native-inertia-boilerplate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED2D5A672A0279920086D777 /* native_inertia_boilerplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = native_inertia_boilerplateApp.swift; sourceTree = "<group>"; };
 		ED2D5A692A0279920086D777 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 				77AA83322A3329B600E8651F /* NativeSwiftView.swift */,
 				77AA83342A3329CB00E8651F /* NativeInertiaView.swift */,
 				77AA83362A3329D500E8651F /* ImageManager.swift */,
-				77AA83382A3329E100E8651F /* ImagePicker.swift */,
 			);
 			path = "native-inertia-boilerplate";
 			sourceTree = "<group>";
@@ -208,7 +205,6 @@
 				77AA83372A3329D500E8651F /* ImageManager.swift in Sources */,
 				ED2D5A682A0279920086D777 /* native_inertia_boilerplateApp.swift in Sources */,
 				ED2D5A962A0289650086D777 /* ContentViewController.swift in Sources */,
-				77AA83392A3329E100E8651F /* ImagePicker.swift in Sources */,
 				ED2D5A802A027BB70086D777 /* AppRouter.swift in Sources */,
 				ED2D5A742A0279940086D777 /* native_inertia_boilerplate.xcdatamodeld in Sources */,
 			);

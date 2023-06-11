@@ -10,63 +10,71 @@ import CoreData
 class RootController {
     
     static func index() -> String {
-        print(getImages2())
-        
         return Inertia.render(
             component: "Root/Index",
-            props: ["images": getImages2()],
+            props: ["images": getImages()],
+            
             url: "/"
         )
     }
     
     static func takePicture(imageManager: ImageManager) -> String {
         print("RootController - takePicture()")
-        imageManager.takePicture2()
-        
-        return "" // Placeholder return value, you can return the response you need
-    }
-    
-    static func getImages2() -> String {
-        let images = fetchImagesFromCoreData()
-        let compressedImages = images.compactMap { compressImage($0) }
-        let imageStrings = compressedImages.map { imageToBase64String($0) }
-        
-        let props = imageStrings
-        
-        let json = try? JSONSerialization.data(withJSONObject: props, options: [])
-        if let jsonData = json, let jsonString = String(data: jsonData, encoding: .utf8) {
-            return jsonString
-        }
+        imageManager.takePicture()
         
         return ""
     }
     
-    private static func compressImage(_ imageData: Data) -> Data? {
-        guard let uiImage = UIImage(data: imageData) else {
-            return nil
-        }
-        
-        guard let compressedData = uiImage.jpegData(compressionQuality: 0.001) else {
-            return nil
-        }
-        
-        return compressedData
-    }
-    
-    private static func fetchImagesFromCoreData() -> [Data] {
+    static func getImages() -> [[String: String]] {
         let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
         
         do {
             let items = try PersistenceController.shared.container.viewContext.fetch(fetchRequest)
-            let images = items.compactMap { $0.imageItem }
-            print(images)
+            
+            var images: [[String: String]] = []
+            
+            for item in items {
+                if let imageData = item.imageItem,
+                   let uiImage = UIImage(data: imageData),
+                   let pngData = uiImage.jpegData(compressionQuality: 1.0) {
+                    let base64String = pngData.base64EncodedString()
+                    let id = item.imageId?.uuidString ?? ""
+                    
+                    let imageDict: [String: String] = ["image": base64String, "id": id]
+                    images.append(imageDict)
+                }
+            }
+            
             return images
         } catch {
-            return []
+            print(error.localizedDescription)
         }
+        
+        return []
     }
     
-    private static func imageToBase64String(_ imageData: Data) -> String {
-        return imageData.base64EncodedString()
+    static func delete(id: String) -> String {
+        let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "imageId == %@", id)
+        
+        print("delete aufruf", id)
+        do {
+            let items = try PersistenceController.shared.container.viewContext.fetch(fetchRequest)
+            
+            if let item = items.first {
+                PersistenceController.shared.container.viewContext.delete(item)
+                
+                do {
+                    try PersistenceController.shared.container.viewContext.save()
+                    print("Bild gelöscht")
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        return RootController.index()
     }
 }

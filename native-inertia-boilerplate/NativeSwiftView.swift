@@ -11,16 +11,16 @@ import CoreData
 struct NativeSwiftView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: Item.entity(), sortDescriptors: []) var items: FetchedResults<Item>
-
+    
     @State private var showCamera = false
     @State private var newImage: UIImage?
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Camera - Feature")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-
+            
             Button(action: {
                 showCamera = true
             }) {
@@ -30,7 +30,7 @@ struct NativeSwiftView: View {
                     .background(Color.white)
                     .cornerRadius(10)
             }
-
+            
             ScrollView {
                 LazyVGrid(columns: gridLayout, spacing: 10) {
                     ForEach(items, id: \.self) { item in
@@ -63,21 +63,22 @@ struct NativeSwiftView: View {
             loadImageFromCoreData()
         }
     }
-
+    
     var gridLayout: [GridItem] {
         let gridItem = GridItem(.flexible(), spacing: 10)
         return Array(repeating: gridItem, count: 3)
     }
-
+    
     private func saveImageToCoreData() {
         guard let image = newImage,
               let imageData = image.jpegData(compressionQuality: 1.0) else {
             return
         }
-
+        
         let newItem = Item(context: viewContext)
         newItem.imageItem = imageData
-
+        newItem.imageId = UUID(uuidString: UUID().uuidString)
+        
         do {
             try viewContext.save()
             print("Bild gespeichert")
@@ -85,7 +86,7 @@ struct NativeSwiftView: View {
             print(error.localizedDescription)
         }
     }
-
+    
     private func deleteItem(_ item: Item) {
         viewContext.delete(item)
         do {
@@ -95,7 +96,7 @@ struct NativeSwiftView: View {
             print(error.localizedDescription)
         }
     }
-
+    
     private func loadImageFromCoreData() {
         // Fetch and load images from CoreData
     }
@@ -104,34 +105,34 @@ struct NativeSwiftView: View {
 struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var image: UIImage?
-
+    
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.sourceType = .camera
         picker.delegate = context.coordinator
         return picker
     }
-
+    
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
-
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
-
+    
     final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         let parent: ImagePicker
-
+        
         init(parent: ImagePicker) {
             self.parent = parent
         }
-
+        
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
             if let image = info[.originalImage] as? UIImage {
                 parent.image = image
             }
             parent.presentationMode.wrappedValue.dismiss()
         }
-
+        
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             parent.presentationMode.wrappedValue.dismiss()
         }
