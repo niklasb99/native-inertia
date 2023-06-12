@@ -5,16 +5,14 @@
   export let images: any;
 
   const getData = () => {
-    location.reload();
+    location.reload()
   };
 
   const takePicture = () => {
     router.get(`/takePicture`, { preserveScroll: true });
-    getData();
   };
 
   const deletePicture = (imageId) => {
-    // console.log("Bild löschen", imageId);
     router.delete(`/${imageId}`, { preserveScroll: true });
     getData();
   };
@@ -34,6 +32,12 @@
       imageDiv.style.backgroundSize = "cover";
     }
   };
+
+  document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    getData();
+  }
+});
 
   onMount(() => {
     loadImages();
@@ -106,6 +110,10 @@
     background-color: black;
     color: white;
     border-radius: 8px;
+  }
+
+  button:hover {
+    background-color:rgb(0, 145, 255);
   }
 
   .delete-button {
