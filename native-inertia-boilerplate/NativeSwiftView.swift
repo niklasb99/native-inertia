@@ -40,7 +40,11 @@ struct NativeSwiftView: View {
                                 try? viewContext.save()
                             }
                         Text("\(key)")
+                            .font(.system(size: 15))
+
                         Text("ms")
+                            .font(.system(size: 15))
+
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .contentShape(Rectangle())
@@ -53,7 +57,7 @@ struct NativeSwiftView: View {
                         }
                     }
                 }
-                .onDelete(perform: deleteItem)
+               .onDelete(perform: deleteItem)
             }
            .background(Color(UIColor(
                 red: CGFloat(242) / 255,
@@ -66,9 +70,9 @@ struct NativeSwiftView: View {
                 timeItems = manager.fetchData()
             }
             .navigationTitle("Timestamps")
-            .toolbar {
+        .toolbar {
                 EditButton()
-            }
+          }
             .navigationBarItems(
                 leading: Button(action: deleteAllItems, label: {
                     Image(systemName: "trash")

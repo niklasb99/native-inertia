@@ -20,6 +20,11 @@ class RootController {
             timestamps.append(item)
         }
         
+        print("data", data)
+        print("timestamps", timestamps)
+
+        
+        
         return Inertia.render(
             component: "Root/Index",
             props: ["timestamps": timestamps],
