@@ -7,6 +7,8 @@
 	const countdown = writable(10);
   
 	const count = writable(0);
+
+	export let degree: string;
   
 	const handleClick = () => {
 	  countdown.set(10);
@@ -20,6 +22,7 @@
 	  if ($start) {
 		count.set($count + 1);
 		if (Date.now() - parseInt($start) < 10000) {
+			//console.log(degree)
 		  router.get("/");
 		}
 	  }
@@ -47,14 +50,15 @@
   
   <main>
 	<h2>Countdown: {$countdown}</h2>
-	<button on:click={handleClick}>Loop it!</button>
-	<h2>Count: {$count}</h2>
+	<button on:click={handleClick}>Start</button>
+	<h3>Anzahl Seitenaufrufe: {$count}</h3>
   </main>
   
   <style scoped>
 	main {
 	  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	  text-align: center;
+	  text-align: left;
+	  margin-left: 30px;
 	}
 
 	button {
