@@ -31,7 +31,7 @@
       router.get("/");
       responseCounter.set($responseCounter + 1);
       const compass = document.getElementById("compass");
-      compass.style.transform = `rotate(${degree}deg)`;
+      compass.style.transform = `rotate(${degree*(-1)}deg)`;
     }
   });
 </script>

@@ -12,11 +12,12 @@ struct ContentView: View {
     init() {
         UITabBar.appearance().tintColor = .black
         UITableView.appearance().backgroundColor = .green // Uses UIColor
-
+        
     }
     
     var body: some View {
         TabView {
+            
             WebViewContainer()
                 .tabItem {
                     Image(systemName: "dot.circle")
@@ -24,12 +25,14 @@ struct ContentView: View {
                 }
                 .edgesIgnoringSafeArea(.all)
             
+            
             SwiftViewContainer()
                 .tabItem {
                     Image(systemName: "staroflife.circle")
                     Text("NativeSwift")
                 }
                 .edgesIgnoringSafeArea(.all)
+            
         }
         .accentColor(.black)
     }
@@ -41,8 +44,10 @@ struct WebViewContainer: View {
     }
 }
 
+
 struct SwiftViewContainer: View {
     var body: some View {
         NativeSwiftView()
     }
 }
+

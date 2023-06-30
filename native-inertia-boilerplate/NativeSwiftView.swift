@@ -92,10 +92,10 @@ struct NativeSwiftView : View {
                 }
             }
             .frame(width: 300, height: 300)
-            .rotationEffect(Angle(degrees: self.compassHeading.degrees))
+            .rotationEffect(Angle(degrees: (self.compassHeading.degrees)))
             .statusBar(hidden: true)
             
-            Text("\(Int(self.compassHeading.degrees)*(-1))°")
+            Text("\(Int(self.compassHeading.degrees))°")
                 .font(.title)
                 .bold()
         }

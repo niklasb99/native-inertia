@@ -15,19 +15,19 @@ class AppRouter: InertiaRouter {
         // index
         self.get("/") { [self] (req) -> String in
             let response = RootController.index()
-            delayResponseIfNeeded()
+            delay()
             return response
         }
         
         // show
         self.get("/:id") { [self] (req) -> String in
             let response = RootController.show(id: req.param("id")!)
-            delayResponseIfNeeded()
+            delay()
             return response
         }
     }
     
-    private func delayResponseIfNeeded() {
-        usleep(5000) // Delay in microseconds (8 milliseconds)
+    private func delay() {
+        usleep(5000)
     }
 }
