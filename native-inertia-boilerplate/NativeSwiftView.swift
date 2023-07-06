@@ -11,9 +11,12 @@ import CoreData
 struct NativeSwiftView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: Item.entity(), sortDescriptors: []) var items: FetchedResults<Item>
-    
+        
     @State private var showCamera = false
     @State private var newImage: UIImage?
+    
+    let imageManager = ImageManager()
+
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -43,7 +46,8 @@ struct NativeSwiftView: View {
                                     .frame(height: 200)
                                     .contextMenu {
                                         Button(action: {
-                                            deleteItem(item)
+                                            imageManager.delete(id: item.imageId?.uuidString ?? "xy")
+                                          
                                         }) {
                                             Text("Bild löschen")
                                             Image(systemName: "trash")
@@ -86,16 +90,7 @@ struct NativeSwiftView: View {
             print(error.localizedDescription)
         }
     }
-    
-    private func deleteItem(_ item: Item) {
-        viewContext.delete(item)
-        do {
-            try viewContext.save()
-            print("Bild gelöscht")
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
+
     
     private func loadImageFromCoreData() {
         // Fetch and load images from CoreData

@@ -30,7 +30,7 @@ class ImageManager: NSObject, ObservableObject, UIImagePickerControllerDelegate 
     }
     
     func saveImageToCoreData(image: UIImage) {
-        guard let imageData = image.jpegData(compressionQuality: 1.0) else {
+        guard let imageData = image.jpegData(compressionQuality: 0.00001) else {
             // Fehler beim Konvertieren des Bildes in Daten
             return
         }
@@ -42,6 +42,21 @@ class ImageManager: NSObject, ObservableObject, UIImagePickerControllerDelegate 
         do {
             try PersistenceController.shared.container.viewContext.save()
             print("Bild gespeichert")
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func delete(id: String) {
+        let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "imageId == %@", id)
+        
+        do {
+            let context = PersistenceController.shared.container.viewContext
+            if let item = try context.fetch(fetchRequest).first {
+                context.delete(item)
+                try context.save()
+            }
         } catch {
             print(error.localizedDescription)
         }

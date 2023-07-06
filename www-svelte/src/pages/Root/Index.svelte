@@ -5,7 +5,7 @@
   export let images: any;
 
   const getData = () => {
-    location.reload()
+    location.reload();
   };
 
   const takePicture = () => {
@@ -22,22 +22,20 @@
 
     await new Promise((resolve) => setTimeout(resolve, 0)); // Warte kurz, um der Seite Zeit zum Rendern zu geben
 
-    for (let index = 0; index < images.length; index++) {
-      const image = images[index];
+    images.forEach((image, index) => {
       const imageDiv = imageContainer.children[index];
-
-      let imageURL = `data:image/png;base64,${image.image}`;
+      const imageURL = `data:image/png;base64,${image.image}`;
       imageDiv.style.background = `url(${imageURL})`;
-      imageDiv.style.backgroundPosition = "center";
+	  imageDiv.style.backgroundPosition = "center";
       imageDiv.style.backgroundSize = "cover";
-    }
+    });
   };
 
   document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible") {
-    getData();
-  }
-});
+    if (document.visibilityState === "visible") {
+      getData();
+    }
+  });
 
   onMount(() => {
     loadImages();
@@ -113,7 +111,7 @@
   }
 
   button:hover {
-    background-color:rgb(0, 145, 255);
+    background-color: rgb(0, 145, 255);
   }
 
   .delete-button {

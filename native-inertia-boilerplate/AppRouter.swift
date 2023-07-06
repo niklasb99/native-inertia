@@ -19,7 +19,7 @@ class AppRouter: InertiaRouter {
         
         self.delete("/:id") { (req) -> String in
             print("AppRouter - delete")
-            return RootController.delete(id: req.param("id")!)
+            return RootController.delete(imageManager: self.imageManager, id: req.param("id")!)
         }
         
         self.get("/takePicture") { (req) -> String in

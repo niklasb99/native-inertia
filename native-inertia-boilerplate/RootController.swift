@@ -25,56 +25,38 @@ class RootController {
         return ""
     }
     
-    static func getImages() -> [[String: String]] {
+    static func getImages() -> [[String: Any]] {
         let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
         
         do {
             let items = try PersistenceController.shared.container.viewContext.fetch(fetchRequest)
             
-            var images: [[String: String]] = []
+            var images: [[String: Any]] = []
             
             for item in items {
                 if let imageData = item.imageItem,
                    let uiImage = UIImage(data: imageData),
-                   let pngData = uiImage.jpegData(compressionQuality: 1.0) {
-                    let base64String = pngData.base64EncodedString()
+                   let jpegData = uiImage.jpegData(compressionQuality: 0.001) {
+                    let base64String = jpegData.base64EncodedString()
                     let id = item.imageId?.uuidString ?? ""
+                    let fileSize = jpegData.count
                     
-                    let imageDict: [String: String] = ["image": base64String, "id": id]
+                    print(fileSize)
+                    
+                    let imageDict: [String: Any] = ["image": base64String, "id": id, "fileSize": fileSize]
                     images.append(imageDict)
                 }
             }
-            
             return images
         } catch {
             print(error.localizedDescription)
         }
-        
         return []
     }
+
     
-    static func delete(id: String) -> String {
-        let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "imageId == %@", id)
-        
-        print("delete aufruf", id)
-        do {
-            let items = try PersistenceController.shared.container.viewContext.fetch(fetchRequest)
-            
-            if let item = items.first {
-                PersistenceController.shared.container.viewContext.delete(item)
-                
-                do {
-                    try PersistenceController.shared.container.viewContext.save()
-                    print("Bild gelöscht")
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-        
+    static func delete(imageManager: ImageManager, id: String) -> String {
+        imageManager.delete(id: id)
         return RootController.index()
     }
 }
