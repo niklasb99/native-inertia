@@ -84,4 +84,4 @@ Folge diesen Schritten, um das GitHub-Projekt lokal zum Laufen zu bringen:
    - Baue und starte die App in Xcode.
    - Die Inhalte, die du in der App siehst, werden auf dem mobilen Endgerät oder im Simulator ausgeführt und angezeigt. Wenn du Änderungen vornimmst, musst du das Frontend in Visual Studio Code erneut bauen und die App in Xcode ebenfalls erneut bauen und starten.
 
-Das war's! Nun sollte das GitHub-Projekt lokal laufen und je nach Bedarf im Dev- oder Prod-Modus verwendet werden.
+Das war's! Nun sollte das GitHub-Projekt lokal laufen und je nach Bedarf im Dev- oder Prod-Modus verwendet werden können.
